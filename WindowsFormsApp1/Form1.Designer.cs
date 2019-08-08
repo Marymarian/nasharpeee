@@ -57,6 +57,7 @@
             this.cbTemplates.Name = "cbTemplates";
             this.cbTemplates.Size = new System.Drawing.Size(245, 21);
             this.cbTemplates.TabIndex = 0;
+            this.cbTemplates.SelectedIndexChanged += new System.EventHandler(this.cbTemplates_SelectedIndexChanged);
             // 
             // label1
             // 

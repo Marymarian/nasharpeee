@@ -19,7 +19,7 @@ namespace WindowsFormsApp1
 
         KeyBoardHook Hooker = new KeyBoardHook();
         Rules rules = new Rules();
-
+       
 
         private void YO_Click(object sender, EventArgs e)
         {
@@ -46,7 +46,7 @@ namespace WindowsFormsApp1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Clipboard.SetText ("Пётр>Сергеевич>Валентир>01.12.89>М>Северная верфь");
+            Clipboard.SetText ("Пётр>Сергеевич>Валентир>01.12.89>М");
             rules = Rules.Deserialise;
             cbTemplates.Items.AddRange(rules.templates.ToArray());
             Hooker.SetHook();
@@ -72,6 +72,17 @@ namespace WindowsFormsApp1
                     cbTemplates.Items.Add(template);
                     Rules.Serialise(rules);
                 }
+        }
+
+        private void cbTemplates_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbTemplates.SelectedItem == null)
+                return;
+            Template template = (Template)cbTemplates.SelectedItem;
+            tbTemplateName.Text = template.Name;
+            tbTemplateSeparator.Text = template.Separator;
+            rtbTemplate.Text = template.TemplateRow;
+            Hooker.template = template;
         }
     }
 }
