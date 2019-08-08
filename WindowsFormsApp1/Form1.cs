@@ -17,6 +17,10 @@ namespace WindowsFormsApp1
             InitializeComponent();
         }
 
+        KeyBoardHook Hooker = new KeyBoardHook();
+        Rules rules = new Rules();
+       
+
         private void YO_Click(object sender, EventArgs e)
         {
             //Если в буфере обмен содержится текст
@@ -24,10 +28,11 @@ namespace WindowsFormsApp1
             {
                 //Извлекаем (точнее копируем) его и сохраняем в переменную
                 string strT = Clipboard.GetText();
-                do
+                string[] PromArr = strT.Split('>');
+                //do
                     
-                    TB1.Text = strT.Split('>')[0];
-                while (strT = '\n');
+                //    TB1.Text = [0];
+                //while (strT == "\n");
                 ////Выводим показываем сообщение с текстом, скопированным из буфера обмена
                 //MessageBox.Show(this, strT, "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Asterisk); 
             }
@@ -37,6 +42,47 @@ namespace WindowsFormsApp1
                 //Выводим сообщение о том, что в буфере обмена нет текста
                 MessageBox.Show(this, "В буфере обмена нет текста", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Clipboard.SetText ("Пётр>Сергеевич>Валентир>01.12.89>М");
+            rules = Rules.Deserialise;
+            cbTemplates.Items.AddRange(rules.templates.ToArray());
+            Hooker.SetHook();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Hooker.Unhook();
+        }
+
+        private void btInsertTemplate_Click(object sender, EventArgs e)
+        {
+            if(tbTemplateName.Text.Trim().Length>0 && tbTemplateSeparator.Text.Length>0)
+                if (rtbTemplate.Text.Trim().Length > 0)
+                {
+                    Template template = new Template();
+                    template.Name = tbTemplateName.Text.Trim();
+                    template.Separator = tbTemplateSeparator.Text;
+                    template.TemplateRow = rtbTemplate.Text;
+                    string[] Parts = template.TemplateRow.Split(new string[] {template.Separator},StringSplitOptions.None);
+                    template.Rule = new List<string>(Parts);
+                    rules.templates.Add(template);
+                    cbTemplates.Items.Add(template);
+                    Rules.Serialise(rules);
+                }
+        }
+
+        private void cbTemplates_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbTemplates.SelectedItem == null)
+                return;
+            Template template = (Template)cbTemplates.SelectedItem;
+            tbTemplateName.Text = template.Name;
+            tbTemplateSeparator.Text = template.Separator;
+            rtbTemplate.Text = template.TemplateRow;
+            Hooker.template = template;
         }
     }
 }
