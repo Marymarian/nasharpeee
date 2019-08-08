@@ -27,7 +27,7 @@ namespace WindowsFormsApp1
                 do
                     
                     TB1.Text = strT.Split('>')[0];
-                while (strT == "\n");
+                while (strT = '\n');
                 ////Выводим показываем сообщение с текстом, скопированным из буфера обмена
                 //MessageBox.Show(this, strT, "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Asterisk); 
             }
