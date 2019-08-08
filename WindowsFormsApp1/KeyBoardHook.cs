@@ -17,8 +17,7 @@ namespace WindowsFormsApp1
         private LowLevelKeyboardProcDelegate m_callback;
         private IntPtr m_hHook;
         private List<int> PressedVKC = new List<int>();
-        private List<int> Sequence = new List<int>();
-        private List<int> StartStopCombination = new List<int>(new int[] { 162, 163, 164, 165, 150, 86 });//любые три из этой комбинации 
+        public Template template { get; set; }
         private bool learning { get; set; }
 
         #region Hook
@@ -33,6 +32,20 @@ namespace WindowsFormsApp1
 
         [DllImport("user32.dll", SetLastError = true)]
         private static extern IntPtr CallNextHookEx(IntPtr hhk, int nCode, IntPtr wParam, IntPtr lParam);
+        #endregion
+
+        #region Window
+        [DllImport("user32.dll")]
+        public static extern IntPtr GetForegroundWindow();
+
+        [DllImport("user32.dll")]
+        public static extern UInt32 GetWindowThreadProcessId(IntPtr hwnd, ref Int32 pid);
+
+        [DllImport("user32.dll", CharSet = CharSet.Unicode)]
+        public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+
+        [DllImport("user32.dll")]
+        public static extern bool SetForegroundWindow(IntPtr hWnd);
         #endregion
 
         [StructLayout(LayoutKind.Sequential)]
@@ -58,31 +71,50 @@ namespace WindowsFormsApp1
                 Console.WriteLine("Hook: Code: {0}, WParam: {1},VirtualKK: {2}, ScaneCode: {3}, Charer: {4}", nCode, wParam, khs.VirtualKeyCode, khs.ScanCode, Converter.ConvertToString(khs.VirtualKeyCode));
 
                 if (wParam.ToInt32() == 257)
+               
                 {//отжали клавишу
-                    //if (CheckStartStop && PressedVKC.Count >= 3)
-                    //{
-                    //    PressedVKC.Clear();
-                    //    Learning = !Learning;
-                    //    return new IntPtr(1);
-                    //}
-                    //if (Learning)
-                    //{
-                    //    if (PressedVKC.Count > 0)
-                    //    {
-                    //        Sequence.AddRange(PressedVKC);
-                    //        RuleInfo.WindowName = Get_CurrentWindowProcess.MainWindowTitle;
-                    //    }
-                    //}
-                    //else
-                    //{//если  унас в буфере обмена есть данные для разбора 
-                    //    if (CheckStartParse)
-                    //    {
-                    //        Sequence.Clear();
-                    //        Fill_Fields(PressedVKC.Count);
-                    //        return new IntPtr(1);
-                    //    }
-                    //}
-                    //PressedVKC.Clear();
+                 //if (CheckStartStop && PressedVKC.Count >= 3)
+                 //{
+                 //    PressedVKC.Clear();
+                 //    Learning = !Learning;
+                 //    return new IntPtr(1);
+                 //}
+                 //if (Learning)
+                 //{
+                 //    if (PressedVKC.Count > 0)
+                 //    {
+                 //        Sequence.AddRange(PressedVKC);
+                 //        RuleInfo.WindowName = Get_CurrentWindowProcess.MainWindowTitle;
+                 //    }
+                 //}
+                 //else
+                 //{//если  унас в буфере обмена есть данные для разбора 
+                 //    if (CheckStartParse)
+                 //    {
+                 //        Sequence.Clear();
+                 //        Fill_Fields(PressedVKC.Count);
+                 //        return new IntPtr(1);
+                 //    }
+                 //}
+                 //PressedVKC.Clear();
+
+                    if (khs.VirtualKeyCode==192)
+                    {
+                        string[] Data = Clipboard.GetText().Split(new string[] { template.Separator },StringSplitOptions.None);                    
+
+                        SendKeys.SendWait("{BS}");
+                        for (int counter = 0; counter < template.Rule.Count; counter++)
+                        {
+                            if (template.Rule[counter] != "")
+                            {
+                                int index = Convert.ToInt32(template.Rule[counter]) - 1;
+                                SendKeys.Send(Convert.ToString(Data[index]));
+                            }
+                            SendKeys.SendWait("{TAB}");
+                        }
+
+                    }
+                     
                 }
                 else
                     //if (!PressedVKC.Contains(khs.VirtualKeyCode) || (ConvertToInt(Converter.ConvertToString(khs.VirtualKeyCode)) != int.MinValue && wParam.ToInt32() == 260))
