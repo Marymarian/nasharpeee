@@ -116,10 +116,13 @@ namespace WindowsFormsApp1
                                         if (element.Trim().Length != 0)
 
                                         {
-                                            int index = Convert.ToInt32(element) - 1;
-                                            SendKeys.Send(Convert.ToString(Data[index]));
+                                            int index = Convert.ToInt32(element) - 1;                                         
+                                           
+                                                Clipboard.SetText(Data[index]);
+                                                SendKeys.SendWait("+{INS}");
                                         }
                                         SendKeys.Send(" ");
+                                        }
                                     }
                                 }
                                 else
