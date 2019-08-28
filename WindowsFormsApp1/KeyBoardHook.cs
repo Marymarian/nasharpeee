@@ -19,7 +19,7 @@ namespace WindowsFormsApp1
         private List<int> PressedVKC = new List<int>();
         public Template template { get; set; }
         private bool learning { get; set; }
-
+        public bool Play { get; set; } = false;
         #region Hook
         [DllImport("user32.dll", SetLastError = true)]
         private static extern IntPtr SetWindowsHookEx(int idHook, LowLevelKeyboardProcDelegate lpfn, IntPtr hMod, int dwThreadId);
@@ -125,8 +125,10 @@ namespace WindowsFormsApp1
                                 else
                                 {
                                     int index = Convert.ToInt32(template.Rule[counter]) - 1;
-                                    SendKeys.Send(Convert.ToString(Data[index]));
+                                    Clipboard.SetText(Data[index]);
+                                    SendKeys.Send("^v");                                    
                                 }
+                                Clipboard.Clear();
                                 SendKeys.SendWait("{TAB}");
                             }
                         }
@@ -143,12 +145,14 @@ namespace WindowsFormsApp1
 
         public void SetHook()
         {
+            Play = true;
             m_callback = LowLevelKeyboardHookProc;
             m_hHook = SetWindowsHookEx(WH_KEYBOARD_LL, m_callback, GetModuleHandle(IntPtr.Zero), 0);
         }
 
         public void Unhook()
         {
+            Play = false;
             UnhookWindowsHookEx(m_hHook);
         }
     }

@@ -49,7 +49,7 @@ namespace WindowsFormsApp1
             Clipboard.SetText ("Пётр>Сергеевич>Валентир>01.12.89>М");
             rules = Rules.Deserialise;
             cbTemplates.Items.AddRange(rules.templates.ToArray());
-            Hooker.SetHook();
+            //Hooker.SetHook();
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -83,6 +83,20 @@ namespace WindowsFormsApp1
             tbTemplateSeparator.Text = template.Separator;
             rtbTemplate.Text = template.TemplateRow;
             Hooker.template = template;
+        }
+
+        private void btnPlay_Click(object sender, EventArgs e)
+        {
+            if (Hooker.Play)
+            {
+                Hooker.Unhook();
+                btnPlay.BackgroundImage = WindowsFormsApp1.Properties.Resources.Play1;
+            }
+            else
+            {
+                Hooker.SetHook();
+                btnPlay.BackgroundImage = WindowsFormsApp1.Properties.Resources.Stop1;
+            }
         }
     }
 }

@@ -37,6 +37,7 @@
             this.tbTemplateSeparator = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.btnPlay = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cbTemplates
@@ -116,12 +117,24 @@
             this.label9.TabIndex = 18;
             this.label9.Text = "Разделитель";
             // 
+            // btnPlay
+            // 
+            this.btnPlay.BackgroundImage = global::WindowsFormsApp1.Properties.Resources.Play1;
+            this.btnPlay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnPlay.Location = new System.Drawing.Point(327, 44);
+            this.btnPlay.Name = "btnPlay";
+            this.btnPlay.Size = new System.Drawing.Size(32, 32);
+            this.btnPlay.TabIndex = 19;
+            this.btnPlay.UseVisualStyleBackColor = true;
+            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
+            // 
             // Separina
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(411, 450);
+            this.Controls.Add(this.btnPlay);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.tbTemplateSeparator);
@@ -151,6 +164,7 @@
         private System.Windows.Forms.TextBox tbTemplateSeparator;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnPlay;
     }
 }
 
