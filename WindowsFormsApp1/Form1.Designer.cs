@@ -43,7 +43,7 @@
             // cbTemplates
             // 
             this.cbTemplates.FormattingEnabled = true;
-            this.cbTemplates.Location = new System.Drawing.Point(50, 63);
+            this.cbTemplates.Location = new System.Drawing.Point(20, 63);
             this.cbTemplates.Name = "cbTemplates";
             this.cbTemplates.Size = new System.Drawing.Size(245, 21);
             this.cbTemplates.TabIndex = 0;
@@ -52,7 +52,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(47, 47);
+            this.label1.Location = new System.Drawing.Point(17, 47);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(97, 13);
             this.label1.TabIndex = 1;
@@ -60,7 +60,7 @@
             // 
             // rtbTemplate
             // 
-            this.rtbTemplate.Location = new System.Drawing.Point(50, 198);
+            this.rtbTemplate.Location = new System.Drawing.Point(20, 198);
             this.rtbTemplate.Name = "rtbTemplate";
             this.rtbTemplate.Size = new System.Drawing.Size(344, 88);
             this.rtbTemplate.TabIndex = 13;
@@ -69,7 +69,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(47, 182);
+            this.label7.Location = new System.Drawing.Point(17, 182);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(46, 13);
             this.label7.TabIndex = 14;
@@ -77,7 +77,7 @@
             // 
             // btInsertTemplate
             // 
-            this.btInsertTemplate.Location = new System.Drawing.Point(319, 288);
+            this.btInsertTemplate.Location = new System.Drawing.Point(289, 292);
             this.btInsertTemplate.Name = "btInsertTemplate";
             this.btInsertTemplate.Size = new System.Drawing.Size(75, 23);
             this.btInsertTemplate.TabIndex = 15;
@@ -87,14 +87,14 @@
             // 
             // tbTemplateName
             // 
-            this.tbTemplateName.Location = new System.Drawing.Point(50, 159);
+            this.tbTemplateName.Location = new System.Drawing.Point(20, 159);
             this.tbTemplateName.Name = "tbTemplateName";
             this.tbTemplateName.Size = new System.Drawing.Size(124, 20);
             this.tbTemplateName.TabIndex = 16;
             // 
             // tbTemplateSeparator
             // 
-            this.tbTemplateSeparator.Location = new System.Drawing.Point(195, 159);
+            this.tbTemplateSeparator.Location = new System.Drawing.Point(155, 159);
             this.tbTemplateSeparator.Name = "tbTemplateSeparator";
             this.tbTemplateSeparator.Size = new System.Drawing.Size(100, 20);
             this.tbTemplateSeparator.TabIndex = 17;
@@ -102,7 +102,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(47, 143);
+            this.label8.Location = new System.Drawing.Point(17, 143);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(104, 13);
             this.label8.TabIndex = 18;
@@ -111,7 +111,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(192, 143);
+            this.label9.Location = new System.Drawing.Point(152, 143);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(73, 13);
             this.label9.TabIndex = 18;
@@ -119,21 +119,22 @@
             // 
             // btnPlay
             // 
+            this.btnPlay.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnPlay.BackgroundImage = global::WindowsFormsApp1.Properties.Resources.Play1;
             this.btnPlay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnPlay.Location = new System.Drawing.Point(327, 44);
+            this.btnPlay.Location = new System.Drawing.Point(304, 52);
             this.btnPlay.Name = "btnPlay";
             this.btnPlay.Size = new System.Drawing.Size(32, 32);
             this.btnPlay.TabIndex = 19;
-            this.btnPlay.UseVisualStyleBackColor = true;
+            this.btnPlay.UseVisualStyleBackColor = false;
             this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
             // 
             // Separina
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.ClientSize = new System.Drawing.Size(411, 450);
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.ClientSize = new System.Drawing.Size(401, 450);
             this.Controls.Add(this.btnPlay);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);

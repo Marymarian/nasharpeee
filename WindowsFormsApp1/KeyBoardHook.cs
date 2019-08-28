@@ -126,7 +126,7 @@ namespace WindowsFormsApp1
                                 {
                                     int index = Convert.ToInt32(template.Rule[counter]) - 1;
                                     Clipboard.SetText(Data[index]);
-                                    SendKeys.Send("^v");                                    
+                                    SendKeys.Send("+{INS}");                                    
                                 }
                                 Clipboard.Clear();
                                 SendKeys.SendWait("{TAB}");
