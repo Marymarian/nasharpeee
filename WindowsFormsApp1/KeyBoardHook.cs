@@ -125,10 +125,15 @@ namespace WindowsFormsApp1
                                 else
                                 {
                                     int index = Convert.ToInt32(template.Rule[counter]) - 1;
-                                    Clipboard.SetText(Data[index]);
-                                    SendKeys.Send("+{INS}");                                    
+                                    if (Data.Length > index)
+                                    {
+                                        Clipboard.SetText(Data[index]);
+                                        SendKeys.SendWait("+{INS}");                                        
+                                    }
+                                    else
+                                        break;
                                 }
-                                Clipboard.Clear();
+                                System.Threading.Thread.Sleep(50);
                                 SendKeys.SendWait("{TAB}");
                             }
                         }
