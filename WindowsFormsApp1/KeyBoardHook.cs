@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
+
 using System.Windows.Forms;
 
 namespace WindowsFormsApp1
@@ -100,17 +100,35 @@ namespace WindowsFormsApp1
 
                     if (khs.VirtualKeyCode==192)
                     {
-                        string[] Data = Clipboard.GetText().Split(new string[] { template.Separator },StringSplitOptions.None);                    
+                        string[] Data = Clipboard.GetText().Split(new string[] { template.Separator },StringSplitOptions.None);
 
                         SendKeys.SendWait("{BS}");
                         for (int counter = 0; counter < template.Rule.Count; counter++)
                         {
                             if (template.Rule[counter] != "")
                             {
-                                int index = Convert.ToInt32(template.Rule[counter]) - 1;
-                                SendKeys.Send(Convert.ToString(Data[index]));
+                                if (template.Rule[counter].Contains("_"))
+                                {
+                                    string[] datatwo = template.Rule[counter].Split('_');
+                                    for (int twocounter = 0; twocounter < datatwo.Length; twocounter++)
+                                    {
+                                        string element = datatwo[twocounter];
+                                        if (element.Trim().Length != 0)
+
+                                        {
+                                            int index = Convert.ToInt32(element) - 1;
+                                            SendKeys.Send(Convert.ToString(Data[index]));
+                                        }
+                                        SendKeys.Send(" ");
+                                    }
+                                }
+                                else
+                                {
+                                    int index = Convert.ToInt32(template.Rule[counter]) - 1;
+                                    SendKeys.Send(Convert.ToString(Data[index]));
+                                }
+                                SendKeys.SendWait("{TAB}");
                             }
-                            SendKeys.SendWait("{TAB}");
                         }
 
                     }
