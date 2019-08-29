@@ -71,7 +71,7 @@ namespace WindowsFormsApp1
                 Console.WriteLine("Hook: Code: {0}, WParam: {1},VirtualKK: {2}, ScaneCode: {3}, Charer: {4}", nCode, wParam, khs.VirtualKeyCode, khs.ScanCode, Converter.ConvertToString(khs.VirtualKeyCode));
 
                 if (wParam.ToInt32() == 257)
-               
+
                 {//отжали клавишу
                  //if (CheckStartStop && PressedVKC.Count >= 3)
                  //{
@@ -98,9 +98,9 @@ namespace WindowsFormsApp1
                  //}
                  //PressedVKC.Clear();
 
-                    if (khs.VirtualKeyCode==192)
+                    if (khs.VirtualKeyCode == 192)
                     {
-                        string[] Data = Clipboard.GetText().Split(new string[] { template.Separator },StringSplitOptions.None);
+                        string[] Data = Clipboard.GetText().Split(new string[] { template.Separator }, StringSplitOptions.None);
 
                         SendKeys.SendWait("{BS}");
                         for (int counter = 0; counter < template.Rule.Count; counter++)
@@ -118,38 +118,40 @@ namespace WindowsFormsApp1
                                         {
                                             int index = Convert.ToInt32(element) - 1;
                                             //SendKeys.Send(Convert.ToString(Data[index]));
-                                           
-                                                Clipboard.SetText(Data[index]);
-                                                SendKeys.SendWait("+{INS}");
+
+                                            Clipboard.SetText(Data[index]);
+                                            SendKeys.SendWait("+{INS}");
                                         }
                                         SendKeys.Send(" ");
-                                        }
                                     }
+                                }
+                            }
+                            else
+                            {
+                                int index = Convert.ToInt32(template.Rule[counter]) - 1;
+                                if (Data.Length > index)
+                                {
+                                    Clipboard.SetText(Data[index]);
+                                    SendKeys.SendWait("+{INS}");
                                 }
                                 else
-                                {
-                                    int index = Convert.ToInt32(template.Rule[counter]) - 1;
-                                    if (Data.Length > index)
-                                    {
-                                        Clipboard.SetText(Data[index]);
-                                        SendKeys.SendWait("+{INS}");                                        
-                                    }
-                                    else
-                                        break;
-                                }
-                                System.Threading.Thread.Sleep(50);
-                                SendKeys.SendWait("{TAB}");
+                                    break;
                             }
+                            System.Threading.Thread.Sleep(50);
+                            SendKeys.SendWait("{TAB}");
                         }
-
                     }
-                     
+
                 }
+
+            } 
+            
                 else
                     //if (!PressedVKC.Contains(khs.VirtualKeyCode) || (ConvertToInt(Converter.ConvertToString(khs.VirtualKeyCode)) != int.MinValue && wParam.ToInt32() == 260))
-                    PressedVKC.Add(khs.VirtualKeyCode);
+                 
+                PressedVKC.Add(khs.VirtualKeyCode);
                 return CallNextHookEx(m_hHook, nCode, wParam, lParam);
-            }
+            
         }
 
         /// <summary>
