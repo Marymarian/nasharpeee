@@ -117,7 +117,6 @@ namespace WindowsFormsApp1
 
                                         {
                                             int index = Convert.ToInt32(element) - 1;
-                                            //SendKeys.Send(Convert.ToString(Data[index]));
 
                                             Clipboard.SetText(Data[index]);
                                             SendKeys.SendWait("+{INS}");
@@ -137,20 +136,22 @@ namespace WindowsFormsApp1
                                 else
                                     break;
                             }
-                            System.Threading.Thread.Sleep(50);
+                            System.Threading.Thread.Sleep(100);
                             SendKeys.SendWait("{TAB}");
                         }
                     }
 
                 }
 
-            } 
-            
+
+
                 else
                     //if (!PressedVKC.Contains(khs.VirtualKeyCode) || (ConvertToInt(Converter.ConvertToString(khs.VirtualKeyCode)) != int.MinValue && wParam.ToInt32() == 260))
-                 
-                PressedVKC.Add(khs.VirtualKeyCode);
+
+                    PressedVKC.Add(khs.VirtualKeyCode);
                 return CallNextHookEx(m_hHook, nCode, wParam, lParam);
+            }
+        
             
         }
 
