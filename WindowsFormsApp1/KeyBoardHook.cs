@@ -152,6 +152,43 @@ namespace WindowsFormsApp1
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Data">Данные для внесения</param>
+        /// <param name="Element">текущий элемент правила</param>
+        /// <param name="SendKey">ключ который необходимо вставить после вставки данных</param>
+        /// <returns></returns>
+        private bool Set_Data(string[] Data, string Element, string SendKey)
+        {
+            bool Result = false;
+            if (Element.Trim().Length != 0)
+            {
+                int Index = 0;
+                if (int.TryParse(Element, out Index))
+                {
+                    Index -= 1;//Index--;--Index;
+                    if (Data.Length > Index)
+                    {
+                        Clipboard.SetText(Data[Index]);
+                        SendKeys.SendWait("+{INS}");
+                        Result = true;
+                    }
+                    else
+                    {
+                        //Если индекс больше чем массив данных, то надо с этим что то делать, наверное
+                    }
+                }
+                else
+                {
+                    //Если не смогли разобрать то, что было написано в правиле надо решить что с этим делать
+                }
+            }
+            if (SendKey.Length != 0)
+                SendKeys.Send(SendKey);
+            return Result;
+        }
+
         public void SetHook()
         {
             Play = true;
