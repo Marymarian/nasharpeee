@@ -98,5 +98,14 @@ namespace WindowsFormsApp1
                 btnPlay.BackgroundImage = WindowsFormsApp1.Properties.Resources.Stop1;
             }
         }
+
+        private void Options_Click(object sender, EventArgs e)
+        {
+            Hide();
+            Form2 options = new Form2();
+            options.ShowDialog();
+            Close(); 
+
+        }
     }
 }

@@ -37,6 +37,7 @@
             this.tbTemplateSeparator = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.Options = new System.Windows.Forms.Button();
             this.btnPlay = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -117,9 +118,21 @@
             this.label9.TabIndex = 18;
             this.label9.Text = "Разделитель";
             // 
+            // Options
+            // 
+            this.Options.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.Options.BackgroundImage = global::WindowsFormsApp1.Properties.Resources.tabletka;
+            this.Options.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.Options.Location = new System.Drawing.Point(304, 106);
+            this.Options.Name = "Options";
+            this.Options.Size = new System.Drawing.Size(59, 50);
+            this.Options.TabIndex = 20;
+            this.Options.UseVisualStyleBackColor = false;
+            this.Options.Click += new System.EventHandler(this.Options_Click);
+            // 
             // btnPlay
             // 
-            this.btnPlay.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnPlay.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnPlay.BackgroundImage = global::WindowsFormsApp1.Properties.Resources.Play1;
             this.btnPlay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnPlay.Location = new System.Drawing.Point(304, 52);
@@ -133,8 +146,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(401, 450);
+            this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.ClientSize = new System.Drawing.Size(401, 359);
+            this.Controls.Add(this.Options);
             this.Controls.Add(this.btnPlay);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -146,6 +160,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbTemplates);
             this.Name = "Separina";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Separina";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -166,6 +181,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnPlay;
+        private System.Windows.Forms.Button Options;
     }
 }
 
