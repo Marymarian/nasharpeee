@@ -105,16 +105,15 @@ namespace WindowsFormsApp1
                         SendKeys.SendWait("{BS}");
                         for (int counter = 0; counter < template.Rule.Count; counter++)
                         {
-                            if (template.Rule[counter] != "")
+                            if (template.Rule[counter] != "")//если у нас что то записано в правиле, то мы выполняем действия внутри
                             {
-                                if (template.Rule[counter].Contains("_"))
+                                if (template.Rule[counter].Contains("_"))//проверяем есть ли у нас в правиле признаки постановки пробела
                                 {
                                     string[] datatwo = template.Rule[counter].Split('_');
                                     for (int twocounter = 0; twocounter < datatwo.Length; twocounter++)
                                     {
                                         string element = datatwo[twocounter];
                                         if (element.Trim().Length != 0)
-
                                         {
                                             int index = Convert.ToInt32(element) - 1;
 
@@ -125,7 +124,7 @@ namespace WindowsFormsApp1
                                     }
                                 }
                             }
-                            else
+                            else//если у нас в элементе правила ничего нет то мы пытаемся что-то разобрать. Странно не правда ли? 
                             {
                                 int index = Convert.ToInt32(template.Rule[counter]) - 1;
                                 if (Data.Length > index)
