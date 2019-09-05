@@ -30,15 +30,10 @@
         {
             this.cbTemplates = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.rtbTemplate = new System.Windows.Forms.RichTextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.btInsertTemplate = new System.Windows.Forms.Button();
-            this.tbTemplateName = new System.Windows.Forms.TextBox();
-            this.tbTemplateSeparator = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.Options = new System.Windows.Forms.Button();
             this.btnPlay = new System.Windows.Forms.Button();
+            this.lbTemplates = new System.Windows.Forms.ListBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cbTemplates
@@ -59,71 +54,12 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Список шаблонов";
             // 
-            // rtbTemplate
-            // 
-            this.rtbTemplate.Location = new System.Drawing.Point(20, 198);
-            this.rtbTemplate.Name = "rtbTemplate";
-            this.rtbTemplate.Size = new System.Drawing.Size(344, 88);
-            this.rtbTemplate.TabIndex = 13;
-            this.rtbTemplate.Text = "";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(17, 182);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(46, 13);
-            this.label7.TabIndex = 14;
-            this.label7.Text = "Шаблон";
-            // 
-            // btInsertTemplate
-            // 
-            this.btInsertTemplate.Location = new System.Drawing.Point(289, 292);
-            this.btInsertTemplate.Name = "btInsertTemplate";
-            this.btInsertTemplate.Size = new System.Drawing.Size(75, 23);
-            this.btInsertTemplate.TabIndex = 15;
-            this.btInsertTemplate.Text = "Добавить";
-            this.btInsertTemplate.UseVisualStyleBackColor = true;
-            this.btInsertTemplate.Click += new System.EventHandler(this.btInsertTemplate_Click);
-            // 
-            // tbTemplateName
-            // 
-            this.tbTemplateName.Location = new System.Drawing.Point(20, 159);
-            this.tbTemplateName.Name = "tbTemplateName";
-            this.tbTemplateName.Size = new System.Drawing.Size(124, 20);
-            this.tbTemplateName.TabIndex = 16;
-            // 
-            // tbTemplateSeparator
-            // 
-            this.tbTemplateSeparator.Location = new System.Drawing.Point(155, 159);
-            this.tbTemplateSeparator.Name = "tbTemplateSeparator";
-            this.tbTemplateSeparator.Size = new System.Drawing.Size(100, 20);
-            this.tbTemplateSeparator.TabIndex = 17;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(17, 143);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(104, 13);
-            this.label8.TabIndex = 18;
-            this.label8.Text = "Название шаблона";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(152, 143);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(73, 13);
-            this.label9.TabIndex = 18;
-            this.label9.Text = "Разделитель";
-            // 
             // Options
             // 
             this.Options.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.Options.BackgroundImage = global::WindowsFormsApp1.Properties.Resources.tabletka;
             this.Options.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.Options.Location = new System.Drawing.Point(304, 106);
+            this.Options.Location = new System.Drawing.Point(304, 90);
             this.Options.Name = "Options";
             this.Options.Size = new System.Drawing.Size(59, 50);
             this.Options.TabIndex = 20;
@@ -142,21 +78,34 @@
             this.btnPlay.UseVisualStyleBackColor = false;
             this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
             // 
+            // lbTemplates
+            // 
+            this.lbTemplates.FormattingEnabled = true;
+            this.lbTemplates.Location = new System.Drawing.Point(20, 144);
+            this.lbTemplates.Name = "lbTemplates";
+            this.lbTemplates.Size = new System.Drawing.Size(245, 186);
+            this.lbTemplates.TabIndex = 21;
+            this.lbTemplates.SelectedIndexChanged += new System.EventHandler(this.lbTemplates_SelectedIndexChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(17, 127);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(95, 13);
+            this.label2.TabIndex = 22;
+            this.label2.Text = "Правила вставки";
+            // 
             // Separina
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(401, 359);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lbTemplates);
             this.Controls.Add(this.Options);
             this.Controls.Add(this.btnPlay);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.tbTemplateSeparator);
-            this.Controls.Add(this.tbTemplateName);
-            this.Controls.Add(this.btInsertTemplate);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.rtbTemplate);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbTemplates);
             this.Name = "Separina";
@@ -173,15 +122,10 @@
 
         private System.Windows.Forms.ComboBox cbTemplates;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.RichTextBox rtbTemplate;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button btInsertTemplate;
-        private System.Windows.Forms.TextBox tbTemplateName;
-        private System.Windows.Forms.TextBox tbTemplateSeparator;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnPlay;
         private System.Windows.Forms.Button Options;
+        private System.Windows.Forms.ListBox lbTemplates;
+        private System.Windows.Forms.Label label2;
     }
 }
 

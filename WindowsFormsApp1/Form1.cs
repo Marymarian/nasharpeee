@@ -19,7 +19,7 @@ namespace WindowsFormsApp1
 
         KeyBoardHook Hooker = new KeyBoardHook();
         Rules rules = new Rules();
-       
+        DataParse dataTemplates = new DataParse();
 
         private void YO_Click(object sender, EventArgs e)
         {
@@ -48,40 +48,31 @@ namespace WindowsFormsApp1
         {
             Clipboard.SetText ("Пётр>Сергеевич>Валентир>01.12.89>М");
             rules = Rules.Deserialise;
-            cbTemplates.Items.AddRange(rules.templates.ToArray());
-            //Hooker.SetHook();
+            lbTemplates.Items.AddRange(rules.templates.ToArray());
+            dataTemplates = DataParse.Deserialise;
+            cbTemplates.Items.AddRange(dataTemplates.templates.ToArray());
+            
         }
-
+        public Template set_newtemplate
+        {
+            set { lbTemplates.Items.Add(value); }
+        }
+        public DataSeparateTemplate set_NewDataTemplate
+        {
+            set { cbTemplates.Items.Add(value); }
+        }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             Hooker.Unhook();
         }
 
-        private void btInsertTemplate_Click(object sender, EventArgs e)
-        {
-            if(tbTemplateName.Text.Trim().Length>0 && tbTemplateSeparator.Text.Length>0)
-                if (rtbTemplate.Text.Trim().Length > 0)
-                {
-                    Template template = new Template();
-                    template.Name = tbTemplateName.Text.Trim();
-                    template.Separator = tbTemplateSeparator.Text;
-                    template.TemplateRow = rtbTemplate.Text;
-                    string[] Parts = template.TemplateRow.Split(new string[] {template.Separator},StringSplitOptions.None);
-                    template.Rule = new List<string>(Parts);
-                    rules.templates.Add(template);
-                    cbTemplates.Items.Add(template);
-                    Rules.Serialise(rules);
-                }
-        }
+       
 
         private void cbTemplates_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbTemplates.SelectedItem == null)
                 return;
             Template template = (Template)cbTemplates.SelectedItem;
-            tbTemplateName.Text = template.Name;
-            tbTemplateSeparator.Text = template.Separator;
-            rtbTemplate.Text = template.TemplateRow;
             Hooker.template = template;
         }
 
@@ -103,9 +94,19 @@ namespace WindowsFormsApp1
         {
             Hide();
             Form2 options = new Form2();
-            options.ShowDialog();
-            Close(); 
+            options.rules = rules;
+            options.Owner = this; 
+            options.Show();
+            options.Activate(); 
+            
+        }
 
+        private void lbTemplates_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lbTemplates.SelectedItem == null)
+                return;
+            Template template = (Template)lbTemplates.SelectedItem;
+            Hooker.template = template;
         }
     }
 }

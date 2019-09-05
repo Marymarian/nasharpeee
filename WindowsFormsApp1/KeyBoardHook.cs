@@ -112,29 +112,32 @@ namespace WindowsFormsApp1
                                     string[] datatwo = template.Rule[counter].Split('_');
                                     for (int twocounter = 0; twocounter < datatwo.Length; twocounter++)
                                     {
-                                        string element = datatwo[twocounter];
-                                        if (element.Trim().Length != 0)
-                                        {
-                                            int index = Convert.ToInt32(element) - 1;
 
-                                            Clipboard.SetText(Data[index]);
-                                            SendKeys.SendWait("+{INS}");
-                                        }
-                                        SendKeys.Send(" ");
+                                        string element = datatwo[twocounter];
+                                        Set_Data(Data, element, " ");
+                                        //if (element.Trim().Length != 0)
+                                        //{
+                                        //    int index = Convert.ToInt32(element) - 1;
+
+                                        //    Clipboard.SetText(Data[index]);
+                                        //    SendKeys.SendWait("+{INS}");
+                                        //}
+                                        //SendKeys.Send(" ");
                                     }
                                 }
-                            }
-                            else//если у нас в элементе правила ничего нет то мы пытаемся что-то разобрать. Странно не правда ли? 
-                            {
-                                int index = Convert.ToInt32(template.Rule[counter]) - 1;
-                                if (Data.Length > index)
+                                else//если у нас в элементе правила ничего нет то мы пытаемся что-то разобрать. Странно не правда ли? 
                                 {
-                                    Clipboard.SetText(Data[index]);
-                                    SendKeys.SendWait("+{INS}");
+                                    if (!Set_Data(Data, template.Rule[counter], ""))
+                                        //int index = Convert.ToInt32(template.Rule[counter]) - 1;
+                                        //if (Data.Length > index)
+                                        //{
+                                        //    Clipboard.SetText(Data[index]);
+                                        //    SendKeys.SendWait("+{INS}");
+                                        //}
+                                        break;
                                 }
-                                else
-                                    break;
                             }
+                           
                             System.Threading.Thread.Sleep(100);
                             SendKeys.SendWait("{TAB}");
                         }

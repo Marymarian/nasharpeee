@@ -59,6 +59,56 @@ namespace WindowsFormsApp1
     }
 
     [Serializable]
+    public class DataParse
+    {
+        public DataParse()
+        {
+            templates = new List<DataSeparateTemplate>();
+        }
+        public List<DataSeparateTemplate> templates { get; set; }
+        [XmlIgnore]
+        static string path = Path.Combine(Environment.CurrentDirectory, "DataTemplates.rules");
+
+        public static DataParse Deserialise
+        {
+            get
+            {
+                try
+                {
+                    if (!File.Exists(path))
+                        return new DataParse();
+                    XmlSerializer serial = new XmlSerializer(typeof(DataSeparateTemplate));
+                    using (FileStream fs = new FileStream(path, FileMode.Open))
+                    {
+                        return (DataParse)serial.Deserialize(fs);
+                    }
+                }
+                catch
+                {
+                    return new DataParse();
+                }
+            }
+        }
+
+        public static void Serialise(DataParse rules)
+        {
+            try
+            {
+                XmlSerializer serial = new XmlSerializer(typeof(DataSeparateTemplate));
+                using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
+                {
+                    serial.Serialize(fs, rules);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+    }
+
+    [Serializable]
     public class Template
     {
         public Template() { }
@@ -72,4 +122,23 @@ namespace WindowsFormsApp1
             return Name + "\t" + (Separator=="\t"?"\\t":Separator);
         }
     }
+
+    [Serializable]
+    public class DataSeparateTemplate
+    {
+        public DataSeparateTemplate() { }
+        public DataSeparateTemplate(string Name,string Separator)
+        {
+            this.Name = Name;
+            this.Separator = Separator;
+        }
+        public string Name { get; set; }
+        public string Separator { get; set; }
+
+        public override string ToString()
+        {
+            return Name + "\t" + Separator;
+        }
+    }
+
 }
