@@ -67,21 +67,21 @@
             this.tbTemplateSeparator.Location = new System.Drawing.Point(259, 39);
             this.tbTemplateSeparator.Name = "tbTemplateSeparator";
             this.tbTemplateSeparator.Size = new System.Drawing.Size(100, 20);
-            this.tbTemplateSeparator.TabIndex = 23;
+            this.tbTemplateSeparator.TabIndex = 2;
             // 
             // tbTemplateName
             // 
             this.tbTemplateName.Location = new System.Drawing.Point(64, 19);
             this.tbTemplateName.Name = "tbTemplateName";
             this.tbTemplateName.Size = new System.Drawing.Size(124, 20);
-            this.tbTemplateName.TabIndex = 22;
+            this.tbTemplateName.TabIndex = 0;
             // 
             // btInsertTemplate
             // 
             this.btInsertTemplate.Location = new System.Drawing.Point(284, 104);
             this.btInsertTemplate.Name = "btInsertTemplate";
             this.btInsertTemplate.Size = new System.Drawing.Size(75, 23);
-            this.btInsertTemplate.TabIndex = 21;
+            this.btInsertTemplate.TabIndex = 2;
             this.btInsertTemplate.Text = "Добавить";
             this.btInsertTemplate.UseVisualStyleBackColor = true;
             this.btInsertTemplate.Click += new System.EventHandler(this.btInsertTemplate_Click);
@@ -100,7 +100,7 @@
             this.rtbTemplate.Location = new System.Drawing.Point(15, 45);
             this.rtbTemplate.Name = "rtbTemplate";
             this.rtbTemplate.Size = new System.Drawing.Size(344, 53);
-            this.rtbTemplate.TabIndex = 19;
+            this.rtbTemplate.TabIndex = 1;
             this.rtbTemplate.Text = "";
             // 
             // tbDataTemplName
@@ -108,14 +108,14 @@
             this.tbDataTemplName.Location = new System.Drawing.Point(15, 39);
             this.tbDataTemplName.Name = "tbDataTemplName";
             this.tbDataTemplName.Size = new System.Drawing.Size(238, 20);
-            this.tbDataTemplName.TabIndex = 26;
+            this.tbDataTemplName.TabIndex = 1;
             // 
             // btCreateDateTemplate
             // 
             this.btCreateDateTemplate.Location = new System.Drawing.Point(284, 65);
             this.btCreateDateTemplate.Name = "btCreateDateTemplate";
             this.btCreateDateTemplate.Size = new System.Drawing.Size(75, 23);
-            this.btCreateDateTemplate.TabIndex = 27;
+            this.btCreateDateTemplate.TabIndex = 3;
             this.btCreateDateTemplate.Text = "Создать";
             this.btCreateDateTemplate.UseVisualStyleBackColor = true;
             this.btCreateDateTemplate.Click += new System.EventHandler(this.btCreateDateTemplate_Click);
@@ -130,7 +130,7 @@
             this.groupBox1.Location = new System.Drawing.Point(-3, 5);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(395, 131);
-            this.groupBox1.TabIndex = 28;
+            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Создание правила вставки данных в форму";
             // 
@@ -144,7 +144,7 @@
             this.groupBox2.Location = new System.Drawing.Point(-3, 154);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(395, 110);
-            this.groupBox2.TabIndex = 29;
+            this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Создание шаблона разбора данных";
             // 
