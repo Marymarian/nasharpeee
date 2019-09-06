@@ -72,19 +72,29 @@ namespace WindowsFormsApp1
         {
             if (cbTemplates.SelectedItem == null)
                 return;
-            Template template = (Template)cbTemplates.SelectedItem;
-            Hooker.template = template;
+            DataSeparateTemplate template = (DataSeparateTemplate)cbTemplates.SelectedItem;
+            Hooker.dataseparatetempl = template;
         }
 
         private void btnPlay_Click(object sender, EventArgs e)
         {
             if (Hooker.Play)
-            {
+            {                                 
                 Hooker.Unhook();
                 btnPlay.BackgroundImage = WindowsFormsApp1.Properties.Resources.Play1;
             }
             else
             {
+                if (Hooker.dataseparatetempl == null)
+                {
+                    MessageBox.Show("Не выбран шаблон!", "ОЙ!");
+                    return;
+                }
+                if (Hooker.template == null)
+                {
+                    MessageBox.Show("Не выбрано правило!", "ОЙ!");
+                    return;
+                }                
                 Hooker.SetHook();
                 btnPlay.BackgroundImage = WindowsFormsApp1.Properties.Resources.Stop1;
             }
@@ -95,9 +105,11 @@ namespace WindowsFormsApp1
             Hide();
             Form2 options = new Form2();
             options.rules = rules;
+            options.DataTemplate = dataTemplates;
             options.Owner = this; 
             options.Show();
             options.Activate(); 
+
             
         }
 

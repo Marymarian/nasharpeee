@@ -20,6 +20,7 @@ namespace WindowsFormsApp1
         public Template template { get; set; }
         private bool learning { get; set; }
         public bool Play { get; set; } = false;
+        public DataSeparateTemplate dataseparatetempl { get; set; }
         #region Hook
         [DllImport("user32.dll", SetLastError = true)]
         private static extern IntPtr SetWindowsHookEx(int idHook, LowLevelKeyboardProcDelegate lpfn, IntPtr hMod, int dwThreadId);
@@ -71,82 +72,43 @@ namespace WindowsFormsApp1
                 Console.WriteLine("Hook: Code: {0}, WParam: {1},VirtualKK: {2}, ScaneCode: {3}, Charer: {4}", nCode, wParam, khs.VirtualKeyCode, khs.ScanCode, Converter.ConvertToString(khs.VirtualKeyCode));
 
                 if (wParam.ToInt32() == 257)
-
                 {//отжали клавишу
-                 //if (CheckStartStop && PressedVKC.Count >= 3)
-                 //{
-                 //    PressedVKC.Clear();
-                 //    Learning = !Learning;
-                 //    return new IntPtr(1);
-                 //}
-                 //if (Learning)
-                 //{
-                 //    if (PressedVKC.Count > 0)
-                 //    {
-                 //        Sequence.AddRange(PressedVKC);
-                 //        RuleInfo.WindowName = Get_CurrentWindowProcess.MainWindowTitle;
-                 //    }
-                 //}
-                 //else
-                 //{//если  унас в буфере обмена есть данные для разбора 
-                 //    if (CheckStartParse)
-                 //    {
-                 //        Sequence.Clear();
-                 //        Fill_Fields(PressedVKC.Count);
-                 //        return new IntPtr(1);
-                 //    }
-                 //}
-                 //PressedVKC.Clear();
-
-                    if (khs.VirtualKeyCode == 192)
+                    try
                     {
-                        string[] Data = Clipboard.GetText().Split(new string[] { template.Separator }, StringSplitOptions.None);
-
-                        SendKeys.SendWait("{BS}");
-                        for (int counter = 0; counter < template.Rule.Count; counter++)
+                        if (khs.VirtualKeyCode == 192)
                         {
-                            if (template.Rule[counter] != "")//если у нас что то записано в правиле, то мы выполняем действия внутри
+                            string[] Data = Clipboard.GetText().Split(new string[] { dataseparatetempl.Separator }, StringSplitOptions.None);
+
+                            SendKeys.SendWait("{BS}");
+                            for (int counter = 0; counter < template.Rule.Count; counter++)
                             {
-                                if (template.Rule[counter].Contains("_"))//проверяем есть ли у нас в правиле признаки постановки пробела
+                                if (template.Rule[counter] != "")//если у нас что то записано в правиле, то мы выполняем действия внутри
                                 {
-                                    string[] datatwo = template.Rule[counter].Split('_');
-                                    for (int twocounter = 0; twocounter < datatwo.Length; twocounter++)
+                                    if (template.Rule[counter].Contains("_"))//проверяем есть ли у нас в правиле признаки постановки пробела
                                     {
+                                        string[] datatwo = template.Rule[counter].Split('_');
+                                        for (int twocounter = 0; twocounter < datatwo.Length; twocounter++)
+                                        {
 
-                                        string element = datatwo[twocounter];
-                                        Set_Data(Data, element, " ");
-                                        //if (element.Trim().Length != 0)
-                                        //{
-                                        //    int index = Convert.ToInt32(element) - 1;
-
-                                        //    Clipboard.SetText(Data[index]);
-                                        //    SendKeys.SendWait("+{INS}");
-                                        //}
-                                        //SendKeys.Send(" ");
+                                            string element = datatwo[twocounter];
+                                            Set_Data(Data, element, " ");
+                                        }
                                     }
-                                }
-                                else//если у нас в элементе правила ничего нет то мы пытаемся что-то разобрать. Странно не правда ли? 
-                                {
-                                    if (!Set_Data(Data, template.Rule[counter], ""))
-                                        //int index = Convert.ToInt32(template.Rule[counter]) - 1;
-                                        //if (Data.Length > index)
-                                        //{
-                                        //    Clipboard.SetText(Data[index]);
-                                        //    SendKeys.SendWait("+{INS}");
-                                        //}
+                                    else//если у нас в элементе правила ничего нет то мы пытаемся что-то разобрать. Странно не правда ли? 
+                                        if (!Set_Data(Data, template.Rule[counter], ""))
                                         break;
                                 }
+
+                                System.Threading.Thread.Sleep(100);
+                                SendKeys.SendWait("{TAB}");
                             }
-                           
-                            System.Threading.Thread.Sleep(100);
-                            SendKeys.SendWait("{TAB}");
                         }
                     }
-
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message + "\nОбратитесь к разработчикам.", "Ошибка");
+                    }
                 }
-
-
-
                 else
                     //if (!PressedVKC.Contains(khs.VirtualKeyCode) || (ConvertToInt(Converter.ConvertToString(khs.VirtualKeyCode)) != int.MinValue && wParam.ToInt32() == 260))
 
@@ -166,31 +128,51 @@ namespace WindowsFormsApp1
         /// <returns></returns>
         private bool Set_Data(string[] Data, string Element, string SendKey)
         {
+            
             bool Result = false;
-            if (Element.Trim().Length != 0)
+            try
             {
-                int Index = 0;
-                if (int.TryParse(Element, out Index))
+                if (Element.Trim().Length != 0)
                 {
-                    Index -= 1;//Index--;--Index;
-                    if (Data.Length > Index)
+                    int Index = 0;
+                    if (int.TryParse(Element, out Index))
                     {
-                        Clipboard.SetText(Data[Index]);
-                        SendKeys.SendWait("+{INS}");
-                        Result = true;
+                        Index -= 1;//Index--;--Index;
+                        if (Data.Length > Index)
+                        {
+                            Clipboard.SetText(Data[Index]);
+                            SendKeys.SendWait("+{INS}");
+                            Result = true;
+                        }
+                        else
+                        {
+                            //Если индекс больше чем массив данных, то надо с этим что то делать, наверное
+                            DialogResult Dresult = MessageBox.Show("Не верно задано правило.\nИндекс правила превышает размер массива данных для вставки.\nДа-вставляем значение правила.\nОтмена-остановить выполнение.", "Сообщение", MessageBoxButtons.OKCancel);
+                            if (Dresult == DialogResult.OK)
+                            {
+                                Clipboard.SetText(Element);
+                                SendKeys.SendWait("+{INS}");
+                                Result = true;
+                            }
+                            if (Dresult == DialogResult.Cancel)
+                                Result = false;
+                        }
                     }
                     else
                     {
-                        //Если индекс больше чем массив данных, то надо с этим что то делать, наверное
+                        //Если не смогли разобрать то, что было написано в правиле надо решить что с этим делать
+                        Clipboard.SetText(Element);
+                        SendKeys.SendWait("+{INS}");
+                        Result = true;
                     }
                 }
-                else
-                {
-                    //Если не смогли разобрать то, что было написано в правиле надо решить что с этим делать
-                }
+                if (SendKey.Length != 0)
+                    SendKeys.Send(SendKey);
             }
-            if (SendKey.Length != 0)
-                SendKeys.Send(SendKey);
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message + " in Set_Data"+":["+string.Join(";",Data)+","+Element+","+SendKey+"]",ex);
+            }
             return Result;
         }
 
