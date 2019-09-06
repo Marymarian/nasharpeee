@@ -20,7 +20,6 @@ namespace WindowsFormsApp1
         public Template template { get; set; }
         private bool learning { get; set; }
         public bool Play { get; set; } = false;
-        public DataSeparateTemplate dataseparatetempl { get; set; }
         #region Hook
         [DllImport("user32.dll", SetLastError = true)]
         private static extern IntPtr SetWindowsHookEx(int idHook, LowLevelKeyboardProcDelegate lpfn, IntPtr hMod, int dwThreadId);
@@ -77,7 +76,7 @@ namespace WindowsFormsApp1
                     {
                         if (khs.VirtualKeyCode == 192)
                         {
-                            string[] Data = Clipboard.GetText().Split(new string[] { dataseparatetempl.Separator }, StringSplitOptions.None);
+                            string[] Data = Clipboard.GetText().Split(new string[] { template.Separator }, StringSplitOptions.None);
 
                             SendKeys.SendWait("{BS}");
                             for (int counter = 0; counter < template.Rule.Count; counter++)

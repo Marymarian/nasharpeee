@@ -19,8 +19,7 @@ namespace WindowsFormsApp1
 
         KeyBoardHook Hooker = new KeyBoardHook();
         Rules rules = new Rules();
-        DataParse dataTemplates = new DataParse();
-
+        
         private void YO_Click(object sender, EventArgs e)
         {
             //Если в буфере обмен содержится текст
@@ -46,35 +45,28 @@ namespace WindowsFormsApp1
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            try
+            {
+                labVersion.Text = "ver." + System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion;
+            }
+            catch
+            {
+                labVersion.Text = "ver.?.?.?.?";
+            }
             Clipboard.SetText ("Пётр>Сергеевич>Валентир>01.12.89>М");
             rules = Rules.Deserialise;
-            lbTemplates.Items.AddRange(rules.templates.ToArray());
-            dataTemplates = DataParse.Deserialise;
-            cbTemplates.Items.AddRange(dataTemplates.templates.ToArray());
+            lbTemplates.Items.AddRange(rules.templates.ToArray());            
             
         }
         public Template set_newtemplate
         {
             set { lbTemplates.Items.Add(value); }
         }
-        public DataSeparateTemplate set_NewDataTemplate
-        {
-            set { cbTemplates.Items.Add(value); }
-        }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             Hooker.Unhook();
         }
-
-       
-
-        private void cbTemplates_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cbTemplates.SelectedItem == null)
-                return;
-            DataSeparateTemplate template = (DataSeparateTemplate)cbTemplates.SelectedItem;
-            Hooker.dataseparatetempl = template;
-        }
+        
 
         private void btnPlay_Click(object sender, EventArgs e)
         {
@@ -85,11 +77,6 @@ namespace WindowsFormsApp1
             }
             else
             {
-                if (Hooker.dataseparatetempl == null)
-                {
-                    MessageBox.Show("Не выбран шаблон!", "ОЙ!");
-                    return;
-                }
                 if (Hooker.template == null)
                 {
                     MessageBox.Show("Не выбрано правило!", "ОЙ!");
@@ -105,7 +92,6 @@ namespace WindowsFormsApp1
             Hide();
             Form2 options = new Form2();
             options.rules = rules;
-            options.DataTemplate = dataTemplates;
             options.Owner = this; 
             options.Show();
             options.Activate(); 

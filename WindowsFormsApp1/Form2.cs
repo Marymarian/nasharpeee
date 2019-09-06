@@ -16,7 +16,6 @@ namespace WindowsFormsApp1
             InitializeComponent();
         }
         public Rules rules { get; set; }
-        public DataParse DataTemplate { get; set; }
         private void Form2_Load(object sender, EventArgs e)
         {
 
@@ -29,8 +28,8 @@ namespace WindowsFormsApp1
                     Template template = new Template();
                     template.Name = tbTemplateName.Text.Trim();
                     template.TemplateRow = rtbTemplate.Text;
-                    template.Separator = "<";
-                    string[] Parts = template.TemplateRow.Split(new string[] { template.Separator }, StringSplitOptions.None);
+                    template.Separator = tbTemplateSeparator.Text;
+                    string[] Parts = template.TemplateRow.Split(new string[] { ">" }, StringSplitOptions.None);
                     template.Rule = new List<string>(Parts);
                     rules.templates.Add(template);
                     ((Separina)Owner).set_newtemplate = template;
@@ -43,17 +42,6 @@ namespace WindowsFormsApp1
             Owner.Show();
         }
 
-        private void btCreateDateTemplate_Click(object sender, EventArgs e)
-        {
-            string Name = tbDataTemplName.Text.Trim();
-            string Separator = tbTemplateSeparator.Text;
-            if (Name.Length>0 && Separator.Length > 0)
-            {
-                DataSeparateTemplate NewOne = new DataSeparateTemplate(Name,Separator);
-                DataTemplate.templates.Add(NewOne);
-                ((Separina)Owner).set_NewDataTemplate = NewOne;
-                DataParse.Serialise(DataTemplate);
-            }
-        }
+        
     }
 }
