@@ -29,7 +29,7 @@ namespace WindowsFormsApp1
                     Template template = new Template();
                     template.Name = tbTemplateName.Text.Trim();
                     template.TemplateRow = rtbTemplate.Text;
-                    string[] Parts = template.TemplateRow.Split(new string[] { template.Separator }, StringSplitOptions.None);
+                    string[] Parts = template.TemplateRow.Split(new string[] { "<" }, StringSplitOptions.None);
                     template.Rule = new List<string>(Parts);
                     rules.templates.Add(template);
                     ((Separina)Owner).set_newtemplate = template;
