@@ -18,8 +18,17 @@ namespace WindowsFormsApp1
         public Rules rules { get; set; }
         private void Form2_Load(object sender, EventArgs e)
         {
-
+            fillShablons();
         }
+
+        private void fillShablons()
+        {
+            cbShablons.Items.Clear();
+            cbShablons.Items.Add("Новый шаблон");
+            cbShablons.Items.AddRange(rules.templates.ToArray());
+            cbShablons.SelectedIndex = 0;
+        }
+
         private void btInsertTemplate_Click(object sender, EventArgs e)
         {
             if (tbTemplateName.Text.Trim().Length > 0 )
@@ -42,6 +51,14 @@ namespace WindowsFormsApp1
             Owner.Show();
         }
 
-        
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (cbShablons.SelectedItem != null && cbShablons.SelectedIndex != 0)
+            {
+                rules.templates.RemoveAt(cbShablons.SelectedIndex - 1);
+                fillShablons();
+                Rules.Serialise(rules);
+            }
+        }
     }
 }
