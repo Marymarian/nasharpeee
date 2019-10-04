@@ -6,7 +6,7 @@ using System.Text;
 
 using System.Xml.Serialization;
 
-namespace WindowsFormsApp1
+namespace Separina
 {
     [Serializable]
     public class Rules
@@ -17,7 +17,7 @@ namespace WindowsFormsApp1
         }
         public List<Template> templates { get; set; }
         [XmlIgnore]
-        static string path = Path.Combine(Environment.CurrentDirectory, "Rules.rules");
+        static string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "Rules.rules");
 
         public static Rules Deserialise
         {

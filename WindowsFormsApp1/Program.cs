@@ -4,7 +4,7 @@ using System.Linq;
 
 using System.Windows.Forms;
 
-namespace WindowsFormsApp1
+namespace Separina
 {
     static class Program
     {
