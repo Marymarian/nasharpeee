@@ -6,7 +6,7 @@ using System.Text;
 
 using System.Windows.Forms;
 
-namespace WindowsFormsApp1
+namespace Separina
 {
     /// <summary>
     /// Перехват клавиш и обработка событий нажатия на клавиши
@@ -76,6 +76,7 @@ namespace WindowsFormsApp1
                     {
                         if (khs.VirtualKeyCode == 192)
                         {
+                            InputLanguage.CurrentInputLanguage = InputLanguage.FromCulture(new System.Globalization.CultureInfo("ru-RU"));
                             string[] Data = Clipboard.GetText().Split(new string[] { template.Separator }, StringSplitOptions.None);
 
                             SendKeys.SendWait("{BS}");
@@ -139,9 +140,8 @@ namespace WindowsFormsApp1
                         Index -= 1;//Index--;--Index;
                         if (Data.Length > Index)
                         {
-                            Clipboard.SetText(Data[Index]);
-                            SendKeys.SendWait("+{INS}");
-                            Result = true;
+                            Result=SetFromClipboard(Data[Index]);
+                            
                         }
                         else
                         {
@@ -149,9 +149,8 @@ namespace WindowsFormsApp1
                             DialogResult Dresult = MessageBox.Show("Не верно задано правило.\nИндекс правила превышает размер массива данных для вставки.\nДа-вставляем значение правила.\nОтмена-остановить выполнение.", "Сообщение", MessageBoxButtons.OKCancel);
                             if (Dresult == DialogResult.OK)
                             {
-                                Clipboard.SetText(Element);
-                                SendKeys.SendWait("+{INS}");
-                                Result = true;
+                                Result = SetFromClipboard(Element);
+                                
                             }
                             if (Dresult == DialogResult.Cancel)
                                 Result = false;
@@ -160,13 +159,17 @@ namespace WindowsFormsApp1
                     else
                     {
                         //Если не смогли разобрать то, что было написано в правиле надо решить что с этим делать
-                        Clipboard.SetText(Element);
-                        SendKeys.SendWait("+{INS}");
-                        Result = true;
+                        if (Element.Contains("^") && int.TryParse(Element.Replace("^",""),out Index))
+                        {
+                            Result = Set_Data(Data,"",Data[Index]);
+                        }
+                        else
+                            Result = SetFromClipboard(Element);
+                        
                     }
                 }
                 if (SendKey.Length != 0)
-                    SendKeys.Send(SendKey);
+                    Result = SetByKeyCode(SendKey);
             }
             catch (Exception ex)
             {
@@ -174,7 +177,17 @@ namespace WindowsFormsApp1
             }
             return Result;
         }
-
+        private bool SetFromClipboard(string element)
+        {
+            Clipboard.SetText(element);
+            SendKeys.SendWait("+{INS}");
+           return true;
+        }
+        private bool SetByKeyCode(string element)
+        {
+            SendKeys.SendWait(element);
+            return true;
+        }
         public void SetHook()
         {
             Play = true;

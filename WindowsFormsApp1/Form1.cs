@@ -8,7 +8,7 @@ using System.Text;
 
 using System.Windows.Forms;
 
-namespace WindowsFormsApp1
+namespace Separina
 {
     public partial class Separina : Form
     {
@@ -73,7 +73,7 @@ namespace WindowsFormsApp1
             if (Hooker.Play)
             {                                 
                 Hooker.Unhook();
-                btnPlay.BackgroundImage = WindowsFormsApp1.Properties.Resources.Play1;
+                btnPlay.BackgroundImage = Properties.Resources.Play1;
             }
             else
             {
@@ -83,7 +83,7 @@ namespace WindowsFormsApp1
                     return;
                 }                
                 Hooker.SetHook();
-                btnPlay.BackgroundImage = WindowsFormsApp1.Properties.Resources.Stop1;
+                btnPlay.BackgroundImage = Properties.Resources.Stop1;
             }
         }
 

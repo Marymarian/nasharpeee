@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApp1
+﻿namespace Separina
 {
     partial class Separina
     {
@@ -38,7 +38,7 @@
             // Options
             // 
             this.Options.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.Options.BackgroundImage = global::WindowsFormsApp1.Properties.Resources.Settings_icon_icons_com_54973;
+            this.Options.BackgroundImage = global::Separina.Properties.Resources.Settings_icon_icons_com_54973;
             this.Options.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.Options.Location = new System.Drawing.Point(43, 244);
             this.Options.Name = "Options";
@@ -50,7 +50,7 @@
             // btnPlay
             // 
             this.btnPlay.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnPlay.BackgroundImage = global::WindowsFormsApp1.Properties.Resources.Play1;
+            this.btnPlay.BackgroundImage = global::Separina.Properties.Resources.Play1;
             this.btnPlay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnPlay.Location = new System.Drawing.Point(5, 244);
             this.btnPlay.Name = "btnPlay";
