@@ -74,7 +74,7 @@ namespace Separina
                 {//отжали клавишу
                     try
                     {
-                        if (khs.VirtualKeyCode == 192)
+                        if (khs.VirtualKeyCode == 106)
                         {
                             InputLanguage.CurrentInputLanguage = InputLanguage.FromCulture(new System.Globalization.CultureInfo("ru-RU"));
                             string[] Data = Clipboard.GetText().Split(new string[] { template.Separator }, StringSplitOptions.None);
@@ -161,7 +161,7 @@ namespace Separina
                         //Если не смогли разобрать то, что было написано в правиле надо решить что с этим делать
                         if (Element.Contains("^") && int.TryParse(Element.Replace("^",""),out Index))
                         {
-                            Result = Set_Data(Data,"",Data[Index]);
+                            Result = Set_Data(Data,"",Data[Index-1]);
                         }
                         else
                             Result = SetFromClipboard(Element);
@@ -173,15 +173,18 @@ namespace Separina
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message + " in Set_Data"+":["+string.Join(";",Data)+","+Element+","+SendKey+"]",ex);
+                throw new Exception(ex.Message + " in Set_Data"+":["+string.Join(";",Data)+", Element: "+Element+", SendKey: "+SendKey+"]",ex);
             }
             return Result;
         }
         private bool SetFromClipboard(string element)
         {
-            Clipboard.SetText(element);
-            SendKeys.SendWait("+{INS}");
-           return true;
+            if (element.Length > 0)
+            {
+                Clipboard.SetText(element);
+                SendKeys.SendWait("+{INS}");
+            }
+            return true;
         }
         private bool SetByKeyCode(string element)
         {
