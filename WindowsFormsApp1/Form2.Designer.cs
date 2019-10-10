@@ -126,6 +126,7 @@
             this.cbShablons.Name = "cbShablons";
             this.cbShablons.Size = new System.Drawing.Size(358, 21);
             this.cbShablons.TabIndex = 1;
+            this.cbShablons.SelectedIndexChanged += new System.EventHandler(this.cbShablons_SelectedIndexChanged);
             // 
             // btnDelete
             // 

@@ -53,7 +53,7 @@ namespace Separina
             {
                 labVersion.Text = "ver.?.?.?.?";
             }
-            Clipboard.SetText ("Пётр>Сергеевич>Валентир>01.12.89>М");
+            Clipboard.SetText ("Пётр||Валентир|01.12.89|М");
             rules = Rules.Deserialise;
             lbTemplates.Items.AddRange(rules.templates.ToArray());            
             
@@ -62,6 +62,15 @@ namespace Separina
         {
             set { lbTemplates.Items.Add(value); }
         }
+        public List<Template> update_template
+            {
+            set
+            { lbTemplates.Items.Clear();
+                lbTemplates.Items.AddRange(value.ToArray());
+            }
+
+            }
+
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             Hooker.Unhook();

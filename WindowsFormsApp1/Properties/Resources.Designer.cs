@@ -63,6 +63,36 @@ namespace Separina.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_настройка_вида_50 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-настройка-вида-50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_привод_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-привод-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_привод_50 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-привод-50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap opt2 {
             get {
                 object obj = ResourceManager.GetObject("opt2", resourceCulture);

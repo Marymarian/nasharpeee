@@ -28,36 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Options = new System.Windows.Forms.Button();
-            this.btnPlay = new System.Windows.Forms.Button();
             this.lbTemplates = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.labVersion = new System.Windows.Forms.Label();
+            this.Options = new System.Windows.Forms.Button();
+            this.btnPlay = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // Options
-            // 
-            this.Options.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.Options.BackgroundImage = global::Separina.Properties.Resources.Settings_icon_icons_com_54973;
-            this.Options.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.Options.Location = new System.Drawing.Point(43, 244);
-            this.Options.Name = "Options";
-            this.Options.Size = new System.Drawing.Size(32, 32);
-            this.Options.TabIndex = 20;
-            this.Options.UseVisualStyleBackColor = false;
-            this.Options.Click += new System.EventHandler(this.Options_Click);
-            // 
-            // btnPlay
-            // 
-            this.btnPlay.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnPlay.BackgroundImage = global::Separina.Properties.Resources.Play1;
-            this.btnPlay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnPlay.Location = new System.Drawing.Point(5, 244);
-            this.btnPlay.Name = "btnPlay";
-            this.btnPlay.Size = new System.Drawing.Size(32, 32);
-            this.btnPlay.TabIndex = 19;
-            this.btnPlay.UseVisualStyleBackColor = false;
-            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
             // 
             // lbTemplates
             // 
@@ -84,6 +60,30 @@
             this.labVersion.Name = "labVersion";
             this.labVersion.Size = new System.Drawing.Size(0, 13);
             this.labVersion.TabIndex = 23;
+            // 
+            // Options
+            // 
+            this.Options.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.Options.BackgroundImage = global::Separina.Properties.Resources.icons8_настройка_вида_50;
+            this.Options.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.Options.Location = new System.Drawing.Point(43, 244);
+            this.Options.Name = "Options";
+            this.Options.Size = new System.Drawing.Size(32, 32);
+            this.Options.TabIndex = 20;
+            this.Options.UseVisualStyleBackColor = false;
+            this.Options.Click += new System.EventHandler(this.Options_Click);
+            // 
+            // btnPlay
+            // 
+            this.btnPlay.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnPlay.BackgroundImage = global::Separina.Properties.Resources.Play1;
+            this.btnPlay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnPlay.Location = new System.Drawing.Point(5, 244);
+            this.btnPlay.Name = "btnPlay";
+            this.btnPlay.Size = new System.Drawing.Size(32, 32);
+            this.btnPlay.TabIndex = 19;
+            this.btnPlay.UseVisualStyleBackColor = false;
+            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
             // 
             // Separina
             // 
