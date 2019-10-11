@@ -33,8 +33,9 @@ namespace Separina
                         return (Rules)serial.Deserialize(fs);
                     }
                 }
-                catch
+                catch(Exception ex)
                 {
+                    Console.WriteLine(ex.Message);
                     return new Rules();
                 }
             }
@@ -66,6 +67,8 @@ namespace Separina
         public string Separator { get; set; }
         public string TemplateRow { get; set; }
         public List<string> Rule { get; set; }
+        public bool VIPRule { get; set; }
+        public DateTime LastUsedTime { get; set; }
 
         public override string ToString()
         {

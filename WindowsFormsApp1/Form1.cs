@@ -15,33 +15,30 @@ namespace Separina
         public Separina()
         {
             InitializeComponent();
+            NotifyTray.Visible = false;
+            NotifyTray.MouseClick += NotifyTray_MouseDoubleClick;
+            Resize += Separina_Resize;
+
+        }
+
+        private void Separina_Resize(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Minimized)
+            {
+                ShowInTaskbar = false;
+                NotifyTray.Visible = true;
+            }
+        }
+
+        private void NotifyTray_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            ShowInTaskbar = true;
+            NotifyTray.Visible = false;
+            WindowState = FormWindowState.Normal;
         }
 
         KeyBoardHook Hooker = new KeyBoardHook();
         Rules rules = new Rules();
-        
-        private void YO_Click(object sender, EventArgs e)
-        {
-            //Если в буфере обмен содержится текст
-            if (Clipboard.ContainsText() == true)
-            {
-                //Извлекаем (точнее копируем) его и сохраняем в переменную
-                string strT = Clipboard.GetText();
-                string[] PromArr = strT.Split('>');
-                //do
-                    
-                //    TB1.Text = [0];
-                //while (strT == "\n");
-                ////Выводим показываем сообщение с текстом, скопированным из буфера обмена
-                //MessageBox.Show(this, strT, "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Asterisk); 
-            }
-        
-            else
-            {
-                //Выводим сообщение о том, что в буфере обмена нет текста
-                MessageBox.Show(this, "В буфере обмена нет текста", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -53,34 +50,41 @@ namespace Separina
             {
                 labVersion.Text = "ver.?.?.?.?";
             }
-            Clipboard.SetText ("Пётр||Валентир|01.12.89|М");
-            rules = Rules.Deserialise;
-            lbTemplates.Items.AddRange(rules.templates.ToArray());            
             
+            rules = Rules.Deserialise;
+            lbTemplates.Items.AddRange(rules.templates.ToArray());
+            clbTemplates.Items.AddRange(rules.templates.ToArray());
         }
         public Template set_newtemplate
         {
-            set { lbTemplates.Items.Add(value); }
+            set
+            {
+                lbTemplates.Items.Add(value);
+                clbTemplates.Items.Add(value);
+            }
         }
         public List<Template> update_template
-            {
+        {
             set
-            { lbTemplates.Items.Clear();
+            {
+                lbTemplates.Items.Clear();
                 lbTemplates.Items.AddRange(value.ToArray());
+                clbTemplates.Items.Clear();
+                clbTemplates.Items.AddRange(value.ToArray());
             }
 
-            }
+        }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             Hooker.Unhook();
         }
-        
+
 
         private void btnPlay_Click(object sender, EventArgs e)
         {
             if (Hooker.Play)
-            {                                 
+            {
                 Hooker.Unhook();
                 btnPlay.BackgroundImage = Properties.Resources.Play1;
             }
@@ -90,7 +94,7 @@ namespace Separina
                 {
                     MessageBox.Show("Не выбрано правило!", "ОЙ!");
                     return;
-                }                
+                }
                 Hooker.SetHook();
                 btnPlay.BackgroundImage = Properties.Resources.Stop1;
             }
@@ -101,11 +105,11 @@ namespace Separina
             Hide();
             Form2 options = new Form2();
             options.rules = rules;
-            options.Owner = this; 
+            options.Owner = this;
             options.Show();
-            options.Activate(); 
+            options.Activate();
 
-            
+
         }
 
         private void lbTemplates_SelectedIndexChanged(object sender, EventArgs e)
@@ -114,6 +118,12 @@ namespace Separina
                 return;
             Template template = (Template)lbTemplates.SelectedItem;
             Hooker.template = template;
+        }
+
+        private void clbTemplates_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            rules.templates[e.Index].VIPRule = e.NewValue == CheckState.Checked;
+            Rules.Serialise(rules);
         }
     }
 }

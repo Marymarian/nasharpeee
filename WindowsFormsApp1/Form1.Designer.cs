@@ -28,11 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Separina));
             this.lbTemplates = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.labVersion = new System.Windows.Forms.Label();
             this.Options = new System.Windows.Forms.Button();
             this.btnPlay = new System.Windows.Forms.Button();
+            this.NotifyTray = new System.Windows.Forms.NotifyIcon(this.components);
+            this.clbTemplates = new System.Windows.Forms.CheckedListBox();
             this.SuspendLayout();
             // 
             // lbTemplates
@@ -85,17 +89,34 @@
             this.btnPlay.UseVisualStyleBackColor = false;
             this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
             // 
+            // NotifyTray
+            // 
+            this.NotifyTray.Icon = ((System.Drawing.Icon)(resources.GetObject("NotifyTray.Icon")));
+            this.NotifyTray.Text = "Ваша Сепарина :)";
+            this.NotifyTray.Visible = true;
+            // 
+            // clbTemplates
+            // 
+            this.clbTemplates.FormattingEnabled = true;
+            this.clbTemplates.Location = new System.Drawing.Point(5, 51);
+            this.clbTemplates.Name = "clbTemplates";
+            this.clbTemplates.Size = new System.Drawing.Size(245, 184);
+            this.clbTemplates.TabIndex = 24;
+            this.clbTemplates.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.clbTemplates_ItemCheck);
+            // 
             // Separina
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(255, 324);
+            this.Controls.Add(this.clbTemplates);
             this.Controls.Add(this.labVersion);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lbTemplates);
             this.Controls.Add(this.Options);
             this.Controls.Add(this.btnPlay);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Separina";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Separina";
@@ -112,6 +133,8 @@
         private System.Windows.Forms.ListBox lbTemplates;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label labVersion;
+        private System.Windows.Forms.NotifyIcon NotifyTray;
+        private System.Windows.Forms.CheckedListBox clbTemplates;
     }
 }
 
