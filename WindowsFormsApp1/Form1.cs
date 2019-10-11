@@ -53,7 +53,7 @@ namespace Separina
             {
                 labVersion.Text = "ver.?.?.?.?";
             }
-            Clipboard.SetText ("Пётр||Валентир|01.12.89|М");
+            Clipboard.SetText ("Пётр>Сергеевич>Валентир>01.12.89>М");
             rules = Rules.Deserialise;
             lbTemplates.Items.AddRange(rules.templates.ToArray());            
             
