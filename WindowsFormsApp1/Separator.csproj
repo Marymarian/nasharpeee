@@ -63,6 +63,9 @@
   <PropertyGroup>
     <SignManifests>true</SignManifests>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>medicine-2_icon-icons.com_66043.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -167,6 +170,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8-настройка-вида-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="medicine-2_icon-icons.com_66043.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

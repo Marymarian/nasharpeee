@@ -59,7 +59,7 @@ namespace Separina
                         template.Name = tbTemplateName.Text.Trim();
                         template.TemplateRow = rtbTemplate.Text;
                         template.Separator = tbTemplateSeparator.Text;
-                        string[] Parts = template.TemplateRow.Split(new string[] { ">" }, StringSplitOptions.None);
+                        string[] Parts = template.TemplateRow.Split(new string[] { ">","<" }, StringSplitOptions.None);
                         template.Rule = new List<string>(Parts);
                         rules.templates.Add(template);
                         ((Separina)Owner).set_newtemplate = template;
@@ -71,7 +71,7 @@ namespace Separina
                         temp.Name = tbTemplateName.Text.Trim();
                         temp.TemplateRow = rtbTemplate.Text;
                         temp.Separator = tbTemplateSeparator.Text;
-                        string[] Parts = temp.TemplateRow.Split(new string[] { ">" }, StringSplitOptions.None);
+                        string[] Parts = temp.TemplateRow.Split(new string[] { ">","<" }, StringSplitOptions.None);
                         temp.Rule= new List<string>(Parts);
                         ((Separina)Owner).update_template = rules.templates;
                         Rules.Serialise(rules);
@@ -91,6 +91,7 @@ namespace Separina
                 rules.templates.RemoveAt(cbShablons.SelectedIndex - 1);
                 fillShablons();
                 Rules.Serialise(rules);
+                ((Separina)Owner).update_template = rules.templates;
             }
         }
 
