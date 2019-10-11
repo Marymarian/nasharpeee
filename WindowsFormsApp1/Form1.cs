@@ -55,6 +55,7 @@ namespace Separina
             lbTemplates.Items.AddRange(rules.templates.ToArray());
             clbTemplates.Items.AddRange(rules.templates.ToArray());
         }
+        
         public Template set_newtemplate
         {
             set
@@ -73,6 +74,17 @@ namespace Separina
                 clbTemplates.Items.AddRange(value.ToArray());
             }
 
+        }
+
+        public void Fill_clb()
+        {
+            foreach (Template Templ in rules.templates)
+            {
+                if (Templ.VIPRule)
+                    clbTemplates.Items.Insert(0, Templ);
+                else
+                    clbTemplates.Items.Add(Templ);
+            }
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
