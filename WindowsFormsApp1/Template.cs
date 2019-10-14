@@ -43,7 +43,7 @@ namespace Separina
 
         public static void Serialise(Rules rules)
         {
-            
+            File.WriteAllText(path, "");
             try
             {
                 XmlSerializer serial = new XmlSerializer(typeof(Rules));
