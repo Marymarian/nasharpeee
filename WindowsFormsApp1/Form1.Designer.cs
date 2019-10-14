@@ -103,6 +103,7 @@
             this.clbTemplates.Size = new System.Drawing.Size(245, 184);
             this.clbTemplates.TabIndex = 24;
             this.clbTemplates.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.clbTemplates_ItemCheck);
+            this.clbTemplates.SelectedIndexChanged += new System.EventHandler(this.clbTemplates_SelectedIndexChanged);
             // 
             // Separina
             // 

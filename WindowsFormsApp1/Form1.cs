@@ -102,7 +102,7 @@ namespace Separina
             }
             else
             {
-                if (Hooker.template == null)
+                if (Hooker.template== null)
                 {
                     MessageBox.Show("Не выбрано правило!", "ОЙ!");
                     return;
@@ -136,6 +136,14 @@ namespace Separina
         {
             rules.templates[e.Index].VIPRule = e.NewValue == CheckState.Checked;
             Rules.Serialise(rules);
+        }
+
+        private void clbTemplates_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (clbTemplates.SelectedItem == null)
+                return;
+            Template template = (Template)clbTemplates.SelectedItem;
+            Hooker.template = template;
         }
     }
 }

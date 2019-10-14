@@ -17,7 +17,7 @@ namespace Separina
         }
         public List<Template> templates { get; set; }
         [XmlIgnore]
-        static string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "Rules.rules");
+        private static string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "Rules.rules");       
 
         public static Rules Deserialise
         {
@@ -43,6 +43,7 @@ namespace Separina
 
         public static void Serialise(Rules rules)
         {
+            
             try
             {
                 XmlSerializer serial = new XmlSerializer(typeof(Rules));
