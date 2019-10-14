@@ -74,7 +74,7 @@ namespace Separina
                 {//отжали клавишу
                     try
                     {
-                        if (khs.VirtualKeyCode == 106)
+                        if (khs.VirtualKeyCode == 187)
                         {
                             InputLanguage.CurrentInputLanguage = InputLanguage.FromCulture(new System.Globalization.CultureInfo("ru-RU"));
                             string[] Data = Clipboard.GetText().Split(new string[] { template.Separator }, StringSplitOptions.None);
