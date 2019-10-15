@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{43CE5CB9-C733-4065-8B1C-CC511C4A1BEE}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Separina</RootNamespace>
+    <RootNamespace>_Separina</RootNamespace>
     <AssemblyName>Separina</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -80,6 +80,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Chek.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Chek.Designer.cs">
+      <DependentUpon>Chek.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,26 +98,38 @@
     <Compile Include="Form2.Designer.cs">
       <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
+    <Compile Include="instruction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="instruction.Designer.cs">
+      <DependentUpon>instruction.cs</DependentUpon>
+    </Compile>
     <Compile Include="KeyBoardHook.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Template.cs" />
+    <EmbeddedResource Include="Chek.resx">
+      <DependentUpon>Chek.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="instruction.resx">
+      <DependentUpon>instruction.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -145,34 +163,19 @@
     <None Include="Resources\Stop1.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\opt2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\opt3.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Settings_icon-icons.com_54973.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\tabletka.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\settings.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\set2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-привод-48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-привод-50.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-настройка-вида-50.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="medicine-2_icon-icons.com_66043.ico" />
+    <None Include="Resources\стоп.png" />
+    <None Include="Resources\Play2.png" />
+    <None Include="Resources\вкыыыл.png" />
+    <None Include="Resources\окна.png" />
+    <None Include="Resources\вопрос.png" />
+    <None Include="Resources\Инструкции.png" />
+    <None Include="Resources\проверка.png" />
+    <None Include="Resources\обновить.png" />
+    <None Include="Resources\кнопка обновить.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

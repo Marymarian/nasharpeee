@@ -8,7 +8,7 @@ using System.Text;
 
 using System.Windows.Forms;
 
-namespace Separina
+namespace _Separina
 {
     public partial class Separina : Form
     {
@@ -97,8 +97,9 @@ namespace Separina
         {
             if (Hooker.Play)
             {
+                
                 Hooker.Unhook();
-                btnPlay.BackgroundImage = Properties.Resources.Play1;
+                btnPlay.BackgroundImage = Properties.Resources.Play2;
             }
             else
             {
@@ -144,6 +145,24 @@ namespace Separina
                 return;
             Template template = (Template)clbTemplates.SelectedItem;
             Hooker.template = template;
+        }
+
+        private void instruction_Click(object sender, EventArgs e)
+        {
+            Hide();
+            instruction ins = new instruction();
+            ins.Owner = this;
+            ins.Show();
+            ins.Activate();
+        }
+
+        private void chek_Click(object sender, EventArgs e)
+        {
+            Hide();
+            Chek chek = new Chek();
+            chek.Owner = this;
+            chek.Show();
+            chek.Activate();
         }
     }
 }

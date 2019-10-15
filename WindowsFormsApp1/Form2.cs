@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Separina
+namespace _Separina
 {
     public partial class Form2 : Form
     {

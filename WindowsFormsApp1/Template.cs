@@ -6,7 +6,7 @@ using System.Text;
 
 using System.Xml.Serialization;
 
-namespace Separina
+namespace _Separina
 {
     [Serializable]
     public class Rules

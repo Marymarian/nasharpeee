@@ -1,4 +1,4 @@
-﻿namespace Separina
+﻿namespace _Separina
 {
     partial class Separina
     {
@@ -33,10 +33,12 @@
             this.lbTemplates = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.labVersion = new System.Windows.Forms.Label();
-            this.Options = new System.Windows.Forms.Button();
-            this.btnPlay = new System.Windows.Forms.Button();
             this.NotifyTray = new System.Windows.Forms.NotifyIcon(this.components);
             this.clbTemplates = new System.Windows.Forms.CheckedListBox();
+            this.chek = new System.Windows.Forms.Button();
+            this.instruction = new System.Windows.Forms.Button();
+            this.Options = new System.Windows.Forms.Button();
+            this.btnPlay = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbTemplates
@@ -65,30 +67,6 @@
             this.labVersion.Size = new System.Drawing.Size(0, 13);
             this.labVersion.TabIndex = 23;
             // 
-            // Options
-            // 
-            this.Options.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.Options.BackgroundImage = global::Separina.Properties.Resources.icons8_настройка_вида_50;
-            this.Options.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.Options.Location = new System.Drawing.Point(43, 244);
-            this.Options.Name = "Options";
-            this.Options.Size = new System.Drawing.Size(32, 32);
-            this.Options.TabIndex = 20;
-            this.Options.UseVisualStyleBackColor = false;
-            this.Options.Click += new System.EventHandler(this.Options_Click);
-            // 
-            // btnPlay
-            // 
-            this.btnPlay.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnPlay.BackgroundImage = global::Separina.Properties.Resources.Play1;
-            this.btnPlay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnPlay.Location = new System.Drawing.Point(5, 244);
-            this.btnPlay.Name = "btnPlay";
-            this.btnPlay.Size = new System.Drawing.Size(32, 32);
-            this.btnPlay.TabIndex = 19;
-            this.btnPlay.UseVisualStyleBackColor = false;
-            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
-            // 
             // NotifyTray
             // 
             this.NotifyTray.Icon = ((System.Drawing.Icon)(resources.GetObject("NotifyTray.Icon")));
@@ -105,12 +83,64 @@
             this.clbTemplates.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.clbTemplates_ItemCheck);
             this.clbTemplates.SelectedIndexChanged += new System.EventHandler(this.clbTemplates_SelectedIndexChanged);
             // 
+            // chek
+            // 
+            this.chek.BackgroundImage = global::_Separina.Properties.Resources.проверка;
+            this.chek.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.chek.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.chek.Location = new System.Drawing.Point(195, 244);
+            this.chek.Name = "chek";
+            this.chek.Size = new System.Drawing.Size(55, 68);
+            this.chek.TabIndex = 26;
+            this.chek.UseVisualStyleBackColor = true;
+            this.chek.Click += new System.EventHandler(this.chek_Click);
+            // 
+            // instruction
+            // 
+            this.instruction.BackgroundImage = global::_Separina.Properties.Resources.вопрос;
+            this.instruction.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.instruction.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.instruction.Location = new System.Drawing.Point(135, 244);
+            this.instruction.Name = "instruction";
+            this.instruction.Size = new System.Drawing.Size(54, 68);
+            this.instruction.TabIndex = 25;
+            this.instruction.UseVisualStyleBackColor = true;
+            this.instruction.Click += new System.EventHandler(this.instruction_Click);
+            // 
+            // Options
+            // 
+            this.Options.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.Options.BackgroundImage = global::_Separina.Properties.Resources.окна;
+            this.Options.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.Options.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.Options.Location = new System.Drawing.Point(68, 244);
+            this.Options.Name = "Options";
+            this.Options.Size = new System.Drawing.Size(51, 68);
+            this.Options.TabIndex = 20;
+            this.Options.UseVisualStyleBackColor = false;
+            this.Options.Click += new System.EventHandler(this.Options_Click);
+            // 
+            // btnPlay
+            // 
+            this.btnPlay.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnPlay.BackgroundImage = global::_Separina.Properties.Resources.Play2;
+            this.btnPlay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnPlay.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnPlay.Location = new System.Drawing.Point(5, 244);
+            this.btnPlay.Name = "btnPlay";
+            this.btnPlay.Size = new System.Drawing.Size(48, 68);
+            this.btnPlay.TabIndex = 19;
+            this.btnPlay.UseVisualStyleBackColor = false;
+            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
+            // 
             // Separina
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(255, 324);
+            this.Controls.Add(this.chek);
+            this.Controls.Add(this.instruction);
             this.Controls.Add(this.clbTemplates);
             this.Controls.Add(this.labVersion);
             this.Controls.Add(this.label2);
@@ -136,6 +166,8 @@
         private System.Windows.Forms.Label labVersion;
         private System.Windows.Forms.NotifyIcon NotifyTray;
         private System.Windows.Forms.CheckedListBox clbTemplates;
+        private System.Windows.Forms.Button instruction;
+        private System.Windows.Forms.Button chek;
     }
 }
 

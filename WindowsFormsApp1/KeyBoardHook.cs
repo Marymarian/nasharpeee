@@ -6,7 +6,7 @@ using System.Text;
 
 using System.Windows.Forms;
 
-namespace Separina
+namespace _Separina
 {
     /// <summary>
     /// Перехват клавиш и обработка событий нажатия на клавиши

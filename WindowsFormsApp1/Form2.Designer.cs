@@ -1,4 +1,4 @@
-﻿namespace Separina
+﻿namespace _Separina
 {
     partial class Form2
     {
