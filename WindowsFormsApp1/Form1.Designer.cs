@@ -46,7 +46,7 @@
             this.lbTemplates.FormattingEnabled = true;
             this.lbTemplates.Location = new System.Drawing.Point(5, 52);
             this.lbTemplates.Name = "lbTemplates";
-            this.lbTemplates.Size = new System.Drawing.Size(245, 186);
+            this.lbTemplates.Size = new System.Drawing.Size(245, 173);
             this.lbTemplates.TabIndex = 21;
             this.lbTemplates.SelectedIndexChanged += new System.EventHandler(this.lbTemplates_SelectedIndexChanged);
             // 

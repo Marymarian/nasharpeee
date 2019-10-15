@@ -20,5 +20,10 @@ namespace _Separina
         {
 
         }
+
+        private void instruction_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Owner.Show();
+        }
     }
 }

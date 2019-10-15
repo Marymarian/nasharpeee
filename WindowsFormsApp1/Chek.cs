@@ -15,5 +15,10 @@ namespace _Separina
         {
             InitializeComponent();
         }
+
+        private void Chek_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Owner.Show();
+        }
     }
 }

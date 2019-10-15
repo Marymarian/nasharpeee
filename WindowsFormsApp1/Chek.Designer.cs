@@ -38,6 +38,7 @@
             this.ClientSize = new System.Drawing.Size(314, 558);
             this.Name = "Chek";
             this.Text = "Chek";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Chek_FormClosed);
             this.ResumeLayout(false);
 
         }

@@ -19,6 +19,7 @@ namespace _Separina
         private List<int> PressedVKC = new List<int>();
         public Template template { get; set; }
         private bool learning { get; set; }
+        public Form MainForm { get; set; }
         public bool Play { get; set; } = false;
         #region Hook
         [DllImport("user32.dll", SetLastError = true)]
@@ -46,6 +47,12 @@ namespace _Separina
 
         [DllImport("user32.dll")]
         public static extern bool SetForegroundWindow(IntPtr hWnd);
+
+        [DllImport("user32.dll")]
+        public static extern bool PostMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+
+        [DllImport("user32.dll")]
+        public static extern int LoadKeyboardLayout(string pwszKLID, uint Flags);
         #endregion
 
         [StructLayout(LayoutKind.Sequential)]
@@ -76,7 +83,9 @@ namespace _Separina
                     {
                         if (khs.VirtualKeyCode == 187)
                         {
-                            InputLanguage.CurrentInputLanguage = InputLanguage.FromCulture(new System.Globalization.CultureInfo("ru-RU"));
+                            template.LastUsedTime = DateTime.Now;
+                            //InputLanguage.CurrentInputLanguage = InputLanguage.FromCulture(new System.Globalization.CultureInfo("ru-RU"));
+                            raskladka();
                             string[] Data = Clipboard.GetText().Split(new string[] { template.Separator }, StringSplitOptions.None);
 
                             SendKeys.SendWait("{BS}");
@@ -202,6 +211,13 @@ namespace _Separina
         {
             Play = false;
             UnhookWindowsHookEx(m_hHook);
+        }
+
+        private void raskladka()
+        {
+            string lang = "00000419";
+            int ret = LoadKeyboardLayout(lang, 1);
+            PostMessage(GetForegroundWindow(), 0x50, 1, ret);
         }
     }
 }

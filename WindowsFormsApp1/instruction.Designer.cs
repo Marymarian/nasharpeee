@@ -38,6 +38,7 @@
             this.ClientSize = new System.Drawing.Size(407, 326);
             this.Name = "instruction";
             this.Text = "instruction";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.instruction_FormClosed);
             this.Load += new System.EventHandler(this.instruction_Load);
             this.ResumeLayout(false);
 

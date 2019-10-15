@@ -109,7 +109,8 @@ namespace _Separina
                     return;
                 }
                 Hooker.SetHook();
-                btnPlay.BackgroundImage = Properties.Resources.Stop1;
+                btnPlay.BackgroundImage = Properties.Resources.стоп;
+                Hooker.MainForm = this;
             }
         }
 
