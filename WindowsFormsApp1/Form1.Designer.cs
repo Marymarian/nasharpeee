@@ -88,9 +88,9 @@
             this.chek.BackgroundImage = global::_Separina.Properties.Resources.проверка;
             this.chek.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.chek.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.chek.Location = new System.Drawing.Point(195, 244);
+            this.chek.Location = new System.Drawing.Point(199, 244);
             this.chek.Name = "chek";
-            this.chek.Size = new System.Drawing.Size(55, 68);
+            this.chek.Size = new System.Drawing.Size(51, 68);
             this.chek.TabIndex = 26;
             this.chek.UseVisualStyleBackColor = true;
             this.chek.Click += new System.EventHandler(this.chek_Click);
@@ -100,9 +100,9 @@
             this.instruction.BackgroundImage = global::_Separina.Properties.Resources.вопрос;
             this.instruction.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.instruction.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.instruction.Location = new System.Drawing.Point(135, 244);
+            this.instruction.Location = new System.Drawing.Point(142, 244);
             this.instruction.Name = "instruction";
-            this.instruction.Size = new System.Drawing.Size(54, 68);
+            this.instruction.Size = new System.Drawing.Size(51, 68);
             this.instruction.TabIndex = 25;
             this.instruction.UseVisualStyleBackColor = true;
             this.instruction.Click += new System.EventHandler(this.instruction_Click);
@@ -113,7 +113,7 @@
             this.Options.BackgroundImage = global::_Separina.Properties.Resources.окна;
             this.Options.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.Options.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.Options.Location = new System.Drawing.Point(68, 244);
+            this.Options.Location = new System.Drawing.Point(59, 244);
             this.Options.Name = "Options";
             this.Options.Size = new System.Drawing.Size(51, 68);
             this.Options.TabIndex = 20;

@@ -20,5 +20,17 @@ namespace _Separina
         {
             Owner.Show();
         }
+
+        public string TemplateTest(string Data, Template template)
+        {
+            StringBuilder Result = new StringBuilder();
+            string[] DataParts = Data.Split(new string[] { template.Separator }, StringSplitOptions.None);
+            int Index = 0;
+            Result.Append(DataParts[Index - 1]);
+            return Result.ToString();
+        }
+        rtbChk.Text = TemplateTest(string Data, List<string> Rule);
+
     }
+
 }

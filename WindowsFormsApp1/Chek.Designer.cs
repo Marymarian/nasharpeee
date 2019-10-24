@@ -28,7 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.rtbChk = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
+            // 
+            // rtbChk
+            // 
+            this.rtbChk.Location = new System.Drawing.Point(12, 24);
+            this.rtbChk.Name = "rtbChk";
+            this.rtbChk.Size = new System.Drawing.Size(293, 296);
+            this.rtbChk.TabIndex = 0;
+            this.rtbChk.Text = "";
+            this.rtbChk.TextChanged += new System.EventHandler(this.rtbChk_TextChanged);
             // 
             // Chek
             // 
@@ -36,6 +46,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(314, 558);
+            this.Controls.Add(this.rtbChk);
             this.Name = "Chek";
             this.Text = "Chek";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Chek_FormClosed);
@@ -44,5 +55,7 @@
         }
 
         #endregion
+
+        public System.Windows.Forms.RichTextBox rtbChk;
     }
 }

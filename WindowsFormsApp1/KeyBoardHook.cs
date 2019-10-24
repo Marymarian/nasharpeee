@@ -84,10 +84,11 @@ namespace _Separina
                         if (khs.VirtualKeyCode == 187)
                         {
                             template.LastUsedTime = DateTime.Now;
+
                             //InputLanguage.CurrentInputLanguage = InputLanguage.FromCulture(new System.Globalization.CultureInfo("ru-RU"));
                             raskladka();
                             string[] Data = Clipboard.GetText().Split(new string[] { template.Separator }, StringSplitOptions.None);
-
+                            //Clipboard.Clear();
                             SendKeys.SendWait("{BS}");
                             for (int counter = 0; counter < template.Rule.Count; counter++)
                             {
@@ -124,8 +125,8 @@ namespace _Separina
                     PressedVKC.Add(khs.VirtualKeyCode);
                 return CallNextHookEx(m_hHook, nCode, wParam, lParam);
             }
-        
-            
+
+
         }
 
         /// <summary>
@@ -137,7 +138,7 @@ namespace _Separina
         /// <returns></returns>
         private bool Set_Data(string[] Data, string Element, string SendKey)
         {
-            
+
             bool Result = false;
             try
             {
@@ -149,8 +150,8 @@ namespace _Separina
                         Index -= 1;//Index--;--Index;
                         if (Data.Length > Index)
                         {
-                            Result=SetFromClipboard(Data[Index]);
-                            
+                            Result = SetFromClipboard(Data[Index]);
+
                         }
                         else
                         {
@@ -159,7 +160,7 @@ namespace _Separina
                             if (Dresult == DialogResult.OK)
                             {
                                 Result = SetFromClipboard(Element);
-                                
+
                             }
                             if (Dresult == DialogResult.Cancel)
                                 Result = false;
@@ -168,13 +169,13 @@ namespace _Separina
                     else
                     {
                         //Если не смогли разобрать то, что было написано в правиле надо решить что с этим делать
-                        if (Element.Contains("^") && int.TryParse(Element.Replace("^",""),out Index))
+                        if (Element.Contains("^") && int.TryParse(Element.Replace("^", ""), out Index))
                         {
-                            Result = Set_Data(Data,"",Data[Index-1]);
+                            Result = Set_Data(Data, "", Data[Index - 1]);
                         }
                         else
                             Result = SetFromClipboard(Element);
-                        
+
                     }
                 }
                 if (SendKey.Length != 0)
@@ -182,7 +183,7 @@ namespace _Separina
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message + " in Set_Data"+":["+string.Join(";",Data)+", Element: "+Element+", SendKey: "+SendKey+"]",ex);
+                throw new Exception(ex.Message + " in Set_Data" + ":[" + string.Join(";", Data) + ", Element: " + Element + ", SendKey: " + SendKey + "]", ex);
             }
             return Result;
         }
@@ -219,5 +220,23 @@ namespace _Separina
             int ret = LoadKeyboardLayout(lang, 1);
             PostMessage(GetForegroundWindow(), 0x50, 1, ret);
         }
+
+        //static string[] Sort(List<Template> template); //вообще сюда надо передать clbTemplate?Но что-то он не засовывается сюда.Только List<Template> красным не подчеркивает))
+        //{
+        // string temptemp;
+        // for (int count1=0;count1< template.Length;count1++)
+        //    {
+        //    for (int count2=count1+1;count2< template.Length; count2++)
+        //    {
+        //    if ( template.LastUsedTime[count1]> template.LastUsedTime[count2]) //сравниваем дату посл.исп в предыдущей и последующей ячейках.
+        //    {
+        //    temptemp=template.LastUsedTime[count1];
+        //    template.LastUsedTime[count1]=template.LastUsedTime[count2];
+        //    template.LastUsedTime[count2]=temptemp;
+        //    }
+        //    }
+        //    }
+        //    return template;
+        //}
     }
 }
