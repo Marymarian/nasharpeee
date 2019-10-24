@@ -222,23 +222,6 @@ namespace _Separina
             int ret = LoadKeyboardLayout(lang, 1);
             PostMessage(GetForegroundWindow(), 0x50, 1, ret);
         }
-
-        //static string[] Sort(List<Template> template); //вообще сюда надо передать clbTemplate?Но что-то он не засовывается сюда.Только List<Template> красным не подчеркивает))
-        //{
-        // string temptemp;
-        // for (int count1=0;count1< template.Length;count1++)
-        //    {
-        //    for (int count2=count1+1;count2< template.Length; count2++)
-        //    {
-        //    if ( template.LastUsedTime[count1]> template.LastUsedTime[count2]) //сравниваем дату посл.исп в предыдущей и последующей ячейках.
-        //    {
-        //    temptemp=template.LastUsedTime[count1];
-        //    template.LastUsedTime[count1]=template.LastUsedTime[count2];
-        //    template.LastUsedTime[count2]=temptemp;
-        //    }
-        //    }
-        //    }
-        //    return template;
-        //}
+       
     }
 }
