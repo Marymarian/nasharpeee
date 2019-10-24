@@ -70,8 +70,10 @@ namespace _Separina
         public List<string> Rule { get; set; }
         public bool VIPRule { get; set; }
         public DateTime LastUsedTime { get; set; }
-        //public static List<Template> Sort(List<Template> templates)
-     
+        public static List<Template> Sort(List<Template> templates)
+        {
+
+        }
         public override string ToString()
         {
             return Name + "\t" + (Separator=="\t"?"\\t":Separator);
