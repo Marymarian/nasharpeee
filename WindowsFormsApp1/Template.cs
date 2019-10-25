@@ -70,26 +70,31 @@ namespace _Separina
         public List<string> Rule { get; set; }
         public bool VIPRule { get; set; }
         public DateTime LastUsedTime { get; set; }
-        public static List<Template> Sort(List<Template> templates)
-        {
-            string temptemp;
-            for (int count1 = 0; count1 < templates.Count; count1++)
-            {
-                for (int count2 = count1 + 1; count2 < templates.Count; count2++)
-                {
-                    if (templates.LastUsedTime[count1] > templates.LastUsedTime[count2])
-                    temptemp = templates.LastUsedTime[count1];
-                    templates.LastUsedTime[count1] = templates.LastUsedTime[count2];
-                    templates.LastUsedTime[count2] = temptemp;
-                }
-            }
-        }
-                return templates;
-        }
+
         public override string ToString()
         {
-            return Name + "\t" + (Separator=="\t"?"\\t":Separator);
+            return Name + "\t" + (Separator == "\t" ? "\\t" : Separator);
         }
+        public static List<Template> Sort(List<Template> templates)
+        {           
+            DateTime datedate = DateTime.Now;
+            for (int i = 0; i < templates.Count; i++)
+            {
+                for (int i2 = i + 1; i2 < templates.Count; i2++)
+                {
+                    if (templates[i].LastUsedTime < templates[i2].LastUsedTime)
+                        datedate = templates[i].LastUsedTime;
+                    templates[i].LastUsedTime = templates[i2].LastUsedTime;
+                    templates[i2].LastUsedTime= datedate;
+                }
+                
+
+            }
+            return templates;
+        }
+              
+        }
+        
     }   
 
 }
