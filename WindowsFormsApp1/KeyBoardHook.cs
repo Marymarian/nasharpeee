@@ -77,18 +77,16 @@ namespace _Separina
                 KeysConverter Converter = new KeysConverter();
                 Console.WriteLine("Hook: Code: {0}, WParam: {1},VirtualKK: {2}, ScaneCode: {3}, Charer: {4}", nCode, wParam, khs.VirtualKeyCode, khs.ScanCode, Converter.ConvertToString(khs.VirtualKeyCode));
 
-                if (wParam.ToInt32() == 257)
-                {//отжали клавишу
+                if (wParam.ToInt32() == 257 && khs.VirtualKeyCode==187)
+                {//Отжата клавиша "="
                     try
                     {
-                        if (khs.VirtualKeyCode == 187)
-                        {
                             template.LastUsedTime = DateTime.Now;
 
                             //InputLanguage.CurrentInputLanguage = InputLanguage.FromCulture(new System.Globalization.CultureInfo("ru-RU"));
                             raskladka();
                             string[] Data = Clipboard.GetText().Split(new string[] { template.Separator }, StringSplitOptions.None);
-                            //Clipboard.Clear();
+                            Clipboard.Clear();
                             SendKeys.SendWait("{BS}");
                             for (int counter = 0; counter < template.Rule.Count; counter++)
                             {
@@ -112,7 +110,7 @@ namespace _Separina
                                 System.Threading.Thread.Sleep(100);
                                 SendKeys.SendWait("{TAB}");
                             }
-                        }
+                        
                     }
                     catch (Exception ex)
                     {
@@ -126,7 +124,7 @@ namespace _Separina
                 return CallNextHookEx(m_hHook, nCode, wParam, lParam);
             }
 
-
+            
         }
 
         /// <summary>
