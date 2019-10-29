@@ -87,7 +87,7 @@ namespace _Separina
                             raskladka();
                             string[] Data = Clipboard.GetText().Split(new string[] { template.Separator }, StringSplitOptions.None);
                             Clipboard.Clear();
-                            SendKeys.SendWait("{BS}");
+                            SendKeys.SendWait("+{HOME}{BS}");
                             for (int counter = 0; counter < template.Rule.Count; counter++)
                             {
                                 if (template.Rule[counter] != "")//если у нас что то записано в правиле, то мы выполняем действия внутри
