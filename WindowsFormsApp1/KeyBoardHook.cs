@@ -82,7 +82,7 @@ namespace _Separina
                     try
                     {
                             template.LastUsedTime = DateTime.Now;
-
+                        Unhook();
                             //InputLanguage.CurrentInputLanguage = InputLanguage.FromCulture(new System.Globalization.CultureInfo("ru-RU"));
                             raskladka();
                             string[] Data = Clipboard.GetText().Split(new string[] { template.Separator }, StringSplitOptions.None);
@@ -110,7 +110,7 @@ namespace _Separina
                                 System.Threading.Thread.Sleep(100);
                                 SendKeys.SendWait("{TAB}");
                             }
-                        
+                        SetHook();
                     }
                     catch (Exception ex)
                     {

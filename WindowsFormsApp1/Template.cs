@@ -92,8 +92,6 @@ namespace _Separina
             }
             return templates;
         }
-              
-        }
         
     }   
 

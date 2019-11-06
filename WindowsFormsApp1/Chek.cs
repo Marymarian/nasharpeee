@@ -29,7 +29,7 @@ namespace _Separina
             Result.Append(DataParts[Index - 1]);
             return Result.ToString();
         }
-        rtbChk.Text = TemplateTest(string Data, List<string> Rule);
+        //rtbChk.Text = TemplateTest(string Data, List<string> Rule);
 
     }
 

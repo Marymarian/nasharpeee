@@ -38,7 +38,7 @@
             this.rtbChk.Size = new System.Drawing.Size(293, 296);
             this.rtbChk.TabIndex = 0;
             this.rtbChk.Text = "";
-            this.rtbChk.TextChanged += new System.EventHandler(this.rtbChk_TextChanged);
+            //this.rtbChk.TextChanged += new System.EventHandler(this.rtbChk_TextChanged);
             // 
             // Chek
             // 
