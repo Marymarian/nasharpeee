@@ -81,35 +81,38 @@ namespace _Separina
                 {//Отжата клавиша "="
                     try
                     {
-                            template.LastUsedTime = DateTime.Now;
+                        string ClipBoardData = Clipboard.GetText();
+                        if (ClipBoardData.Trim().Length == 0)
+                            return LowLevelKeyboardHookProc(-1, wParam, lParam);
+                        template.LastUsedTime = DateTime.Now;
                         Unhook();
-                            //InputLanguage.CurrentInputLanguage = InputLanguage.FromCulture(new System.Globalization.CultureInfo("ru-RU"));
-                            raskladka();
-                            string[] Data = Clipboard.GetText().Split(new string[] { template.Separator }, StringSplitOptions.None);
-                            Clipboard.Clear();
-                            SendKeys.SendWait("+{HOME}{BS}");
-                            for (int counter = 0; counter < template.Rule.Count; counter++)
+                        //InputLanguage.CurrentInputLanguage = InputLanguage.FromCulture(new System.Globalization.CultureInfo("ru-RU"));
+                        raskladka();
+                        string[] Data = ClipBoardData.Split(new string[] { template.Separator }, StringSplitOptions.None);
+                        Clipboard.Clear();
+                        SendKeys.SendWait("+{HOME}{BS}");
+                        for (int counter = 0; counter < template.Rule.Count; counter++)
+                        {
+                            if (template.Rule[counter] != "")//если у нас что то записано в правиле, то мы выполняем действия внутри
                             {
-                                if (template.Rule[counter] != "")//если у нас что то записано в правиле, то мы выполняем действия внутри
+                                if (template.Rule[counter].Contains("_"))//проверяем есть ли у нас в правиле признаки постановки пробела
                                 {
-                                    if (template.Rule[counter].Contains("_"))//проверяем есть ли у нас в правиле признаки постановки пробела
+                                    string[] datatwo = template.Rule[counter].Split('_');
+                                    for (int twocounter = 0; twocounter < datatwo.Length; twocounter++)
                                     {
-                                        string[] datatwo = template.Rule[counter].Split('_');
-                                        for (int twocounter = 0; twocounter < datatwo.Length; twocounter++)
-                                        {
 
-                                            string element = datatwo[twocounter];
-                                            Set_Data(Data, element, " ");
-                                        }
+                                        string element = datatwo[twocounter];
+                                        Set_Data(Data, element, " ");
                                     }
-                                    else//если у нас в элементе правила ничего нет то мы пытаемся что-то разобрать. Странно не правда ли? 
-                                        if (!Set_Data(Data, template.Rule[counter], ""))
-                                        break;
                                 }
-
-                                System.Threading.Thread.Sleep(100);
-                                SendKeys.SendWait("{TAB}");
+                                else//если у нас в элементе правила ничего нет то мы пытаемся что-то разобрать. Странно не правда ли? 
+                                    if (!Set_Data(Data, template.Rule[counter], ""))
+                                    break;
                             }
+
+                            System.Threading.Thread.Sleep(300);
+                            SendKeys.SendWait("{TAB}");
+                        }
                         SetHook();
                     }
                     catch (Exception ex)
@@ -192,6 +195,7 @@ namespace _Separina
                 Clipboard.SetText(element);
                 Thread.Sleep(100);
                 SendKeys.SendWait("+{INS}");
+                Clipboard.Clear();
             }
             return true;
         }
